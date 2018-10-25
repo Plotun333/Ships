@@ -66,8 +66,7 @@ function ship() {
         else{
             this.speed = 0;
         }
-        console.log((this.Rotate-WindAngle));
-        console.log("speed:"+this.speed);
+
     }
 
 }

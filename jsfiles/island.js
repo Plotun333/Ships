@@ -1,15 +1,17 @@
-function island(x,y) {
+function Island(x,y) {
     this.x = x;
     this.y = y;
 
-    this.create = function () {
-        loadPixels();
+    this.islandshape = loadImage('images/island1.png');
+    this.show = function () {
+        image(this.islandshape,this.x,this.y);
 
 
-
-        }
 
 
     }
+
+
+
 
 }

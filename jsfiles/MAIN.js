@@ -5,7 +5,10 @@ var mapbig = false;
 var start = true;
 
 //creating the Map
-
+//the number of islands (random)
+const islandcount = 0;
+//the aray of all the islands
+var allislands = [];
 
 
 
@@ -25,6 +28,22 @@ function setup() {
         Map = new Mission_map();
         Ship = new ship();
         Wind = new wind();
+
+        //create all the islands
+
+
+
+        //creating the starting island
+        startisland = new Island(width/2-250,height/2-100);
+        allislands.push(startisland);
+
+        //creating all the enemy islands
+        for(var x=0;x<islandcount; x++){
+            //var x = random
+            //var y = random
+            //I = new island(x,y);
+            //allislands.push(I);
+        }
 
         //it is no longer the start of the game
         start=false;
@@ -47,10 +66,17 @@ function setup() {
 function draw() {
 
     if(mapbig===false) {
+        update();
+
         //change the direction of the wind
         Wind.change();
         //redraw the background to get rid of old images
-        background('blue');
+        background('lightblue');
+        //show the island
+        for(var i=0;i<allislands.length;i++){
+            allislands[i].show();
+
+        }
         //move the player according to the wind
         Ship.movefront(Wind.dir);
         //show the player ship
