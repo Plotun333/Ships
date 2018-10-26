@@ -92,12 +92,17 @@ function draw() {
 }
 //update
 function update() {
+    var angle = Ship.Rotate+90;
+
+    console.log(angle);
 
 
-
+    //checking if Ships Angle (Rotate) is in between 0 and 90 or 90 and 180 or 180 and 270 or 270 and 360
+    //after the we move every island by 0,5 because the ship can only have an angle of 5,10,15,20...
+    //in for cycle adding or subtracting 0,5 from x or y depending on if x between 0 and 90 or 90 and 180...
+    allislands[0].x += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
+    allislands[0].y += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
 }
-
-
 //un press
 function keyPressed() {
     //checking for the big map request

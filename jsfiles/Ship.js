@@ -18,11 +18,14 @@ function ship() {
 
         //translating the rotation center to this.x this.y
         translate(this.x+100,this.y);
-
         //drawing the rotation
         rotate(this.Rotate);
         //drawing image with new position
         image(this.ShipShape,-20,-60);
+        //making sure that the angle isn't <360 or > -360 (for conditions)
+        if(this.Rotate===360 || this.Rotate===-360){
+            this.Rotate = 0;
+        }
         //restore
         pop();
     };
