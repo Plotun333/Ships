@@ -82,9 +82,12 @@ function draw() {
 
         }
 
-        if(Ship.paddling){
+        if(Ship.paddling) {
             //paddle
             Ship.paddle();
+        }else if(Ship.anchoring){
+            Ship.anchor();
+
         }else{
             //move the player according to the wind
             Ship.movefront(Wind.dir);
@@ -102,6 +105,8 @@ function draw() {
 }
 //update
 function update() {
+
+    //############################################### MOVE #############################################################
     //creating an angle var with Ship.Rotate (+90 because that radians think of the bottom of the screen as 90 degrees
     //Ship.Rotate starts at 0
     let angle = Ship.Rotate+90;
@@ -118,11 +123,15 @@ function update() {
 
         index++;
     }
+    //#################################################################################################################
 }
 //un release
 function keyReleased(){
-    if(key==='s' || key==='S'){
+    if(key==='w' || key==='W'){
         Ship.paddling = false;
+    }
+    if(key==='s' || key==='S'){
+        Ship.anchoring = false;
     }
 }
 //un press
@@ -147,10 +156,14 @@ function keyPressed() {
         //rotate the ship clockwise
         Ship.move2();
     }
-    if(key==='s' || key==='S'){
+    if(key==='w' || key==='W'){
+        //start paddling
         Ship.paddling = true;
     }
-
+    if(key==='s' || key==='S'){
+        //start anchoring
+        Ship.anchoring = true;
+    }
 
 
 }

@@ -11,12 +11,15 @@ function wind() {
         //translate is rotation center
         translate(100-10,10+80);
         //color of line
-        stroke('black');
+        stroke('white');
 
         //rotate by this.dir (the direction of the wind)
         rotate(this.dir);
         //draw line
-        line(0,-50,1,50);
+        line(0,-55,0,25);
+        stroke('red');
+        line(0,-5,0,50);
+
 
         //restore
         pop();

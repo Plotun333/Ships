@@ -15,6 +15,7 @@ function ship() {
     //the ship image
     this.ShipShape = loadImage("images/ship.jpg");
     this.ShipShapePaddling = loadImage("images/shipPaddling.jpg");
+    this.ShipShapeAnchoring = loadImage("images/shipAnchor.jpg");
     //the show function
     this.show = function () {
         //push() == save
@@ -30,6 +31,10 @@ function ship() {
         if(this.paddling){
             //draw ship paddling
             image(this.ShipShapePaddling,-20,-60);
+
+        }else if(this.anchoring){
+            //draw ship paddling
+            image(this.ShipShapeAnchoring,-20,-60);
         }else {
             //drawing image with new position
             image(this.ShipShape, -20, -60);
@@ -139,7 +144,7 @@ function ship() {
     this.anchor = function () {
         this.anchoring = true;
         if(this.speed>0) {
-            this.speed -= 0.01;
+            this.speed -= 0.025;
         }
     }
 
