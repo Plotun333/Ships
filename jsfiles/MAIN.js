@@ -92,21 +92,28 @@ function draw() {
 }
 //update
 function update() {
+    //creating an angle var with Ship.Rotate (+90 because that radians think of the bottom of the screen as 90 degrees
+    //Ship.Rotate starts at 0
     var angle = Ship.Rotate+90;
 
-    console.log(angle);
+    //going throw all of the islands ADD(and ships)
+    var index = 0;
+    for(var i = 0;i<allislands.length;i++) {
 
+        //converting angles to radians then getting the cos of these newly created radians (times the speed)
+        //the same with y but except cos => sin
+        //by this process we basically get the x and y of a degree
+        allislands[index].x += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
+        allislands[index].y += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
 
-    //checking if Ships Angle (Rotate) is in between 0 and 90 or 90 and 180 or 180 and 270 or 270 and 360
-    //after the we move every island by 0,5 because the ship can only have an angle of 5,10,15,20...
-    //in for cycle adding or subtracting 0,5 from x or y depending on if x between 0 and 90 or 90 and 180...
-    allislands[0].x += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
-    allislands[0].y += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
+        index++;
+    }
 }
+
 //un press
 function keyPressed() {
     //checking for the big map request
-    if(key==='m'||key==='M' && mapbig===false){
+    if(key==='m'|| key==='M' && mapbig===false){
         //this is the big map of the player screen
         mapbig = true;
         //reset canvas

@@ -51,23 +51,47 @@ function ship() {
             wind = - wind;
         }
 
-        if((wind)<10){
-            this.speed=5;
+        if((wind)<10 && (wind)>-10){
+            if(this.speed<=1.5) {
+                this.speed += 0.005;
+            }
         }
-        else if((wind)<20){
-            this.speed = 4;
+        else if((wind)<20 && (wind)>-20){
+            if(this.speed<=1.25) {
+                this.speed += 0.005;
+            }
+            else{
+                this.speed -= 0.005;
+            }
         }
-        else if(wind<40){
-            this.speed = 3;
+        else if(wind<40 && (wind)>-40){
+            if(this.speed<=1) {
+                this.speed += 0.005;
+            }
+            else{
+                this.speed -= 0.005;
+            }
         }
-        else if((wind)<80){
-            this.speed = 2;
+        else if((wind)<90 && (wind)>-90){
+            if(this.speed<=1.25){
+                this.speed += 0.005;
+            }
+        else{
+                this.speed -= 0.005;
+            }
         }
-        else if((wind)<100){
-            this.speed = 1;
+        else if((wind)<120 && (wind)>-120){
+            if(this.speed<=0.25) {
+                this.speed += 0.005;
+            }
+            else{
+                this.speed -= 0.005;
+            }
         }
         else{
-            this.speed = 0;
+            if(this.speed>0) {
+                this.speed -= 0.01;
+            }
         }
 
     }
