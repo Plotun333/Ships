@@ -28,7 +28,7 @@ function wind() {
         //changing the speed for bigger variations
         this.speed = random(0,2);
         //getting a value if 0 this.dir-this.speed; if 1 this.dir-this.speed
-        var r1 = random(0,1);
+        let r1 = random(0,1);
 
 
         //vary the wind angle

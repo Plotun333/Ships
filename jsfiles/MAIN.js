@@ -5,11 +5,15 @@ var mapbig = false;
 var start = true;
 
 //creating the Map
+//##############################
 //the number of islands (random)
 const islandcount = 0;
 //the aray of all the islands
 var allislands = [];
+const borderx = 10000;
+const bordery = 10000;
 
+//#############################
 
 
 
@@ -38,7 +42,7 @@ function setup() {
         allislands.push(startisland);
 
         //creating all the enemy islands
-        for(var x=0;x<islandcount; x++){
+        for(let x=0;x<islandcount; x++){
             //var x = random
             //var y = random
             //I = new island(x,y);
@@ -73,12 +77,18 @@ function draw() {
         //redraw the background to get rid of old images
         background('lightblue');
         //show the island
-        for(var i=0;i<allislands.length;i++){
+        for(let i=0;i<allislands.length;i++){
             allislands[i].show();
 
         }
-        //move the player according to the wind
-        Ship.movefront(Wind.dir);
+
+        if(Ship.paddling){
+            //paddle
+            Ship.paddle();
+        }else{
+            //move the player according to the wind
+            Ship.movefront(Wind.dir);
+        }
         //show the player ship
         Ship.show();
         //show the compass
@@ -94,11 +104,11 @@ function draw() {
 function update() {
     //creating an angle var with Ship.Rotate (+90 because that radians think of the bottom of the screen as 90 degrees
     //Ship.Rotate starts at 0
-    var angle = Ship.Rotate+90;
+    let angle = Ship.Rotate+90;
 
     //going throw all of the islands ADD(and ships)
-    var index = 0;
-    for(var i = 0;i<allislands.length;i++) {
+    let index = 0;
+    for(let i = 0;i<allislands.length;i++) {
 
         //converting angles to radians then getting the cos of these newly created radians (times the speed)
         //the same with y but except cos => sin
@@ -109,7 +119,12 @@ function update() {
         index++;
     }
 }
-
+//un release
+function keyReleased(){
+    if(key==='s' || key==='S'){
+        Ship.paddling = false;
+    }
+}
 //un press
 function keyPressed() {
     //checking for the big map request
@@ -119,7 +134,7 @@ function keyPressed() {
         //reset canvas
         setup();
     }
-    if(key==='n'||key==='N' && mapbig===true){
+    if(key==='n'|| key==='N' && mapbig===true){
         //this is the big map of the player screen
         mapbig = false;
         setup();
@@ -128,10 +143,15 @@ function keyPressed() {
         //rotate the ship counterclockwise
         Ship.move1();
     }
-    if(key==='a'||key==='A'){
+    if(key==='a'|| key==='A'){
         //rotate the ship clockwise
         Ship.move2();
     }
+    if(key==='s' || key==='S'){
+        Ship.paddling = true;
+    }
+
+
 
 }
 

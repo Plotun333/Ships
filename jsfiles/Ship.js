@@ -3,12 +3,18 @@ function ship() {
     this.x = width/2;
     this.y = height/2;
 
+    //paddling  is equal to
+    this.paddling = false;
+    //anchoring is equal to
+    this.anchoring = false;
+    //the rotation of the player ship
+    //the current speed of the player
     this.speed = 0;
     this.Rotate = 0;
 
     //the ship image
     this.ShipShape = loadImage("images/ship.jpg");
-
+    this.ShipShapePaddling = loadImage("images/shipPaddling.jpg");
     //the show function
     this.show = function () {
         //push() == save
@@ -20,8 +26,14 @@ function ship() {
         translate(this.x+100,this.y);
         //drawing the rotation
         rotate(this.Rotate);
-        //drawing image with new position
-        image(this.ShipShape,-20,-60);
+
+        if(this.paddling){
+            //draw ship paddling
+            image(this.ShipShapePaddling,-20,-60);
+        }else {
+            //drawing image with new position
+            image(this.ShipShape, -20, -60);
+        }
         //making sure that the angle isn't <360 or > -360 (for conditions)
         if(this.Rotate===360 || this.Rotate===-360){
             this.Rotate = 0;
@@ -50,7 +62,7 @@ function ship() {
 
         //make the var wind since we don not want to change the Rotate var
         //WindAngle is the angle of the wind XP
-        var wind = (this.Rotate-WindAngle);
+        let wind = (this.Rotate-WindAngle);
 
         //if wind is somewhere between 10 and -10 then that means that the wind right behind the player
         //speed 1.5
@@ -112,6 +124,23 @@ function ship() {
             }
         }
 
+    };
+    this.paddle = function () {
+        this.paddling = true;
+        if(this.speed<=0.3) {
+            this.speed += 0.01;
+        }
+        else{
+            this.speed -= 0.01;
+        }
+
+
+    };
+    this.anchor = function () {
+        this.anchoring = true;
+        if(this.speed>0) {
+            this.speed -= 0.01;
+        }
     }
 
 }
