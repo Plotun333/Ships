@@ -10,11 +10,12 @@ var start = true;
 const islandcount = 0;
 //the aray of all the islands
 var allislands = [];
-const borderx = 10000;
-const bordery = 10000;
-
 //#############################
-
+//var for border
+var borderx = 0;
+var bordery = 0;
+var atborder = false;
+var moveaway = 0;
 
 
 //setup
@@ -42,12 +43,14 @@ function setup() {
         allislands.push(startisland);
 
         //creating all the enemy islands
-        for(let x=0;x<islandcount; x++){
+        //for(let x=0;x<islandcount; x++){
             //var x = random
             //var y = random
             //I = new island(x,y);
             //allislands.push(I);
-        }
+        //}
+
+
 
         //it is no longer the start of the game
         start=false;
@@ -105,11 +108,36 @@ function draw() {
 }
 //update
 function update() {
-
-    //############################################### MOVE #############################################################
     //creating an angle var with Ship.Rotate (+90 because that radians think of the bottom of the screen as 90 degrees
     //Ship.Rotate starts at 0
     let angle = Ship.Rotate+90;
+    //checking position
+
+    //if the player hits the boarders => flip over 180  degrees
+    if(atborder===false) {
+        if (100 <= borderx || -100 >= borderx) {
+
+            Ship.Rotate += 180;
+            atborder = true;
+
+        }else if (100 <= bordery || -100 >= bordery) {
+
+            Ship.Rotate += 180;
+            atborder = true;
+
+
+        }
+    }
+    //to prevent the player to constantly flipping by 180 degrees 5 frame break
+    if(atborder===true) {
+        moveaway++;
+    }
+    if(moveaway===5){
+        atborder=false;
+        moveaway = 0;
+    }
+    //############################################### MOVE #############################################################
+
 
     //going throw all of the islands ADD(and ships)
     let index = 0;
@@ -121,8 +149,16 @@ function update() {
         allislands[index].x += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
         allislands[index].y += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
 
+        borderx += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
+        bordery += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
         index++;
     }
+    //-----------
+    borderx += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
+    bordery += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
+    console.log("borderx "+borderx);
+    console.log("bordery "+bordery);
+
     //#################################################################################################################
 }
 //un release
