@@ -45,17 +45,24 @@ function ship() {
 
 
     };
+    //this function moves the player
     this.movefront = function(WindAngle){
-        var wind = (this.Rotate-WindAngle);
-        if(wind<0){
-            wind = - wind;
-        }
 
+        //make the var wind since we don not want to change the Rotate var
+        //WindAngle is the angle of the wind XP
+        var wind = (this.Rotate-WindAngle);
+
+        //if wind is somewhere between 10 and -10 then that means that the wind right behind the player
+        //speed 1.5
         if((wind)<10 && (wind)>-10){
             if(this.speed<=1.5) {
+                //acceleration or 0.005 per a frame (fairly slow)
                 this.speed += 0.005;
             }
         }
+        //if wind is somewhere between 20 and -20 then that means that the wind is slightly to the left/right
+        //of the player but it is still basically behind him
+        //speed 1.25
         else if((wind)<20 && (wind)>-20){
             if(this.speed<=1.25) {
                 this.speed += 0.005;
@@ -64,6 +71,9 @@ function ship() {
                 this.speed -= 0.005;
             }
         }
+        //if wind is somewhere between 20 and -20 then that means that the wind is somewhere in between
+        // to the left/right of the player and behind him
+        //speed 1
         else if(wind<40 && (wind)>-40){
             if(this.speed<=1) {
                 this.speed += 0.005;
@@ -72,6 +82,9 @@ function ship() {
                 this.speed -= 0.005;
             }
         }
+        //if wind is somewhere between 20 and -20 then that means that the wind is to the left/right
+        // since sale ships can reach high speeds when the wind is going from the right or left side of them
+        //speed 1.25
         else if((wind)<90 && (wind)>-90){
             if(this.speed<=1.25){
                 this.speed += 0.005;
@@ -80,14 +93,19 @@ function ship() {
                 this.speed -= 0.005;
             }
         }
+
+        //if wind is somewhere between 20 and -20 then that means that the wind is slightly to the left/right
+        //of the player but it is still basically in front of him
+        //speed 1.25
         else if((wind)<120 && (wind)>-120){
-            if(this.speed<=0.25) {
+            if(this.speed<=1) {
                 this.speed += 0.005;
             }
             else{
                 this.speed -= 0.005;
             }
         }
+        //the wind is in front of him (slow down)
         else{
             if(this.speed>0) {
                 this.speed -= 0.01;
