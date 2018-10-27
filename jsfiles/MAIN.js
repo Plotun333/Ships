@@ -7,7 +7,9 @@ var start = true;
 //creating the Map
 //##############################
 //the number of islands (random)
-const islandcount = 0;
+var islandcount = 85;
+islandcount+=15;
+console.log(islandcount);
 //the aray of all the islands
 var allislands = [];
 //#############################
@@ -22,6 +24,11 @@ var moveaway = 0;
 
 // the var map is there to check if the player wants the big canvas or the normal (fight) canvas
 function setup() {
+    //text size
+    textSize(50);
+    textAlign(CENTER);
+
+    //angles are measured in degrees
     angleMode(DEGREES);
     //Creating canvas
     createCanvas(1400, 700);
@@ -43,12 +50,29 @@ function setup() {
         allislands.push(startisland);
 
         //creating all the enemy islands
-        //for(let x=0;x<islandcount; x++){
-            //var x = random
-            //var y = random
-            //I = new island(x,y);
-            //allislands.push(I);
-        //}
+        //starting coordinates
+        let x = -9250;
+        let y = -9250;
+        //randomly generate islands
+        for(let z=0;z<islandcount; z++) {
+            if(x<10000 && y<10000) {
+
+                x +=250;
+                y +=250;
+                let random = Math.floor(Math.random() * 2) + 1;
+                if (random === 1) {
+                    y += Math.floor(Math.random() * 5000) + 1;
+
+                }
+                else if(random === 2) {
+                    y -= Math.floor(Math.random() * 5000) + 1;
+
+                }
+                I = new Island(x, y);
+                allislands.push(I);
+            }
+        }
+
 
 
 
@@ -57,13 +81,9 @@ function setup() {
 
     }
     if(map===true) {
-        console.log("BIG");
-
         background('white');
 
     }else{
-        console.log("SMALL");
-
         background('lightblue');
     }
 
@@ -73,12 +93,18 @@ function setup() {
 function draw() {
 
     if(mapbig===false) {
+
         update();
+
+
 
         //change the direction of the wind
         Wind.change();
         //redraw the background to get rid of old images
         background('lightblue');
+        //show speed text
+        text("SPEED: "+Math.round(Ship.speed * 100) / 100 , 200, 50);
+        fill('black');
         //show the island
         for(let i=0;i<allislands.length;i++){
             allislands[i].show();
@@ -115,12 +141,12 @@ function update() {
 
     //if the player hits the boarders => flip over 180  degrees
     if(atborder===false) {
-        if (100 <= borderx || -100 >= borderx) {
+        if (10000 <= borderx || -10000 >= borderx) {
 
             Ship.Rotate += 180;
             atborder = true;
 
-        }else if (100 <= bordery || -100 >= bordery) {
+        }else if (10000 <= bordery || -10000 >= bordery) {
 
             Ship.Rotate += 180;
             atborder = true;
@@ -149,15 +175,12 @@ function update() {
         allislands[index].x += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
         allislands[index].y += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
 
-        borderx += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
-        bordery += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
         index++;
     }
     //-----------
+    //move the boarders
     borderx += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
     bordery += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
-    console.log("borderx "+borderx);
-    console.log("bordery "+bordery);
 
     //#################################################################################################################
 }
