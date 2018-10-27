@@ -19,6 +19,12 @@ var bordery = 0;
 var atborder = false;
 var moveaway = 0;
 
+//shooting
+//is the player shooting
+var shooting = false;
+var shots = [];
+
+
 
 //setup
 
@@ -114,15 +120,23 @@ function draw() {
         Wind.change();
         //redraw the background to get rid of old images
         background('lightblue');
-        //show speed text
-        text("SPEED: "+Math.round(Ship.speed * 100) / 100 , 200, 50);
-        fill('black');
+
         //show the island
         for(let i=0;i<allislands.length;i++){
             allislands[i].show();
 
         }
+        //show shots
+        if(shots.lenght>0){
+            let index = 0;
+            for(let i = 0;i<shots.length;i++){
+                shots[index].show();
+            }
+        }
 
+        //show speed text
+        text("SPEED: "+Math.round(Ship.speed * 100) / 100 , 200, 50);
+        fill('black');
         if(Ship.paddling) {
             //paddle
             Ship.paddle();
@@ -174,7 +188,7 @@ function update() {
         atborder=false;
         moveaway = 0;
     }
-    Ship.speed = 10;
+
     //############################################### MOVE #############################################################
 
 
@@ -235,6 +249,12 @@ function keyPressed() {
     if(key==='s' || key==='S'){
         //start anchoring
         Ship.anchoring = true;
+    }
+    //look for shooting
+    if(key==='e' || key==='E'){
+        shot = new Shot(Ship.x,Ship,y);
+        shooting = true;
+        shots.push(shot);
     }
 
 
