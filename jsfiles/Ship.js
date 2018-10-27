@@ -13,9 +13,9 @@ function ship() {
     this.Rotate = 0;
 
     //the ship image
-    this.ShipShape = loadImage("images/ship.jpg");
-    this.ShipShapePaddling = loadImage("images/shipPaddling.jpg");
-    this.ShipShapeAnchoring = loadImage("images/shipAnchor.jpg");
+    this.ShipShape = loadImage("images/ship.png");
+    this.ShipShapePaddling = loadImage("images/shipPaddling.png");
+    this.ShipShapeAnchoring = loadImage("images/shipAnchor.png");
     //the show function
     this.show = function () {
         //push() == save

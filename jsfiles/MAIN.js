@@ -7,9 +7,9 @@ var start = true;
 //creating the Map
 //##############################
 //the number of islands (random)
-var islandcount = 85;
-islandcount+=15;
-console.log(islandcount);
+var islandcount = 385;
+
+
 //the aray of all the islands
 var allislands = [];
 //#############################
@@ -46,33 +46,45 @@ function setup() {
 
 
         //creating the starting island
-        startisland = new Island(width/2-250,height/2-100);
+        startisland = new Island(width/2-250,height/2-100,0);
         allislands.push(startisland);
+
 
         //creating all the enemy islands
         //starting coordinates
         let x = -9250;
-        let y = -9250;
+        let y = 0;
         //randomly generate islands
-        for(let z=0;z<islandcount; z++) {
-            if(x<10000 && y<10000) {
 
-                x +=250;
-                y +=250;
+        let h = 0;
+        let lasty = 0;
+        let lastx = 0;
+        for(let z=0;z<islandcount; z++) {
+
+            if(x<10000 && y<10000) {
+                h++;
+                x +=100;
+
+                lastx = x;
+                lasty = y;
+
                 let random = Math.floor(Math.random() * 2) + 1;
-                if (random === 1) {
-                    y += Math.floor(Math.random() * 5000) + 1;
+
+               let shape = Math.floor(Math.random() * 5) + 1;
+
+               if (random === 1) {
+                   lasty += Math.floor(Math.random() * 10000) + 1;
 
                 }
                 else if(random === 2) {
-                    y -= Math.floor(Math.random() * 5000) + 1;
+                    lasty -= Math.floor(Math.random() * 10000) + 1;
 
                 }
-                I = new Island(x, y);
+                I = new Island(lastx, lasty,shape);
                 allislands.push(I);
             }
         }
-
+        console.log(h);
 
 
 
@@ -162,6 +174,7 @@ function update() {
         atborder=false;
         moveaway = 0;
     }
+    Ship.speed = 10;
     //############################################### MOVE #############################################################
 
 
