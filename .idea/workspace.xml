@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7c7c7a69-2e9e-460d-a8cc-7f523a0d3816" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SHIP.html" beforeDir="false" afterPath="$PROJECT_DIR$/SHIP.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jsfiles/MAIN.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/MAIN.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsfiles/island.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/island.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsfiles/shot.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/shot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsfiles/Ship.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/Ship.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -48,15 +46,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="147" />
-          <entry key="js" value="16116" />
-          <entry key="txt" value="258" />
+          <entry key="js" value="16713" />
+          <entry key="txt" value="269" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="147" />
-          <entry key="JavaScript" value="16116" />
-          <entry key="PLAIN_TEXT" value="258" />
+          <entry key="JavaScript" value="16713" />
+          <entry key="PLAIN_TEXT" value="269" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -77,8 +75,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jsfiles/MAIN.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="294" column="92" selection-start-line="294" selection-start-column="92" selection-end-line="294" selection-end-column="92" />
+            <state relative-caret-position="223">
+              <caret line="142" column="13" selection-start-line="142" selection-start-column="13" selection-end-line="142" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -91,7 +89,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jsfiles/shot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
+            <state relative-caret-position="24">
               <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
             </state>
           </provider>
@@ -100,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jsfiles/Ship.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-299">
-              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+            <state relative-caret-position="368">
+              <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -161,10 +159,10 @@
         <option value="$PROJECT_DIR$/jsfiles/enemy.js" />
         <option value="$PROJECT_DIR$/jsfiles/mission_map.js" />
         <option value="$PROJECT_DIR$/jsfiles/wind.js" />
-        <option value="$PROJECT_DIR$/jsfiles/Ship.js" />
         <option value="$PROJECT_DIR$/SHIP.html" />
         <option value="$PROJECT_DIR$/jsfiles/island.js" />
         <option value="$PROJECT_DIR$/jsfiles/shot.js" />
+        <option value="$PROJECT_DIR$/jsfiles/Ship.js" />
         <option value="$PROJECT_DIR$/jsfiles/MAIN.js" />
       </list>
     </option>
@@ -269,7 +267,7 @@
       <workItem from="1540469752748" duration="40886000" />
       <workItem from="1540627480903" duration="5250000" />
       <workItem from="1540664562844" duration="8336000" />
-      <workItem from="1540710973400" duration="6970000" />
+      <workItem from="1540710973400" duration="8698000" />
     </task>
     <task id="LOCAL-00001" summary="adding starting island">
       <created>1540491835444</created>
@@ -348,17 +346,24 @@
       <option name="project" value="LOCAL" />
       <updated>1540674562778</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="canon balls">
+      <created>1540721613924</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1540721613928</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78254000" />
+    <option name="totallyTimeSpent" value="79982000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -413,7 +418,8 @@
     <MESSAGE value="generate islands" />
     <MESSAGE value="generate island and change island" />
     <MESSAGE value="starting shot created canons on ship and edited images" />
-    <option name="LAST_COMMIT_MESSAGE" value="starting shot created canons on ship and edited images" />
+    <MESSAGE value="canon balls" />
+    <option name="LAST_COMMIT_MESSAGE" value="canon balls" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/images/awesome-google-maps-world-0.jpg" />
@@ -460,22 +466,22 @@
     <entry file="file://$PROJECT_DIR$/jsfiles/enemy.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/jsfiles/Ship.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-299">
-          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/images/canonball.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/jsfiles/shot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
+        <state relative-caret-position="24">
           <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/images/canonball.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/jsfiles/Ship.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SHIP.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -486,8 +492,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jsfiles/MAIN.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="294" column="92" selection-start-line="294" selection-start-column="92" selection-end-line="294" selection-end-column="92" />
+        <state relative-caret-position="223">
+          <caret line="142" column="13" selection-start-line="142" selection-start-column="13" selection-end-line="142" selection-end-column="13" />
         </state>
       </provider>
     </entry>

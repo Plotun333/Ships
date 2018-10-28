@@ -24,8 +24,9 @@ var moveaway = 0;
 var shootingE = false;
 var shootingQ = false;
 var shots = [];
-
-
+var shooting = false;
+//when shooting the ship slows down
+var speed = 0;
 
 //setup
 
@@ -137,8 +138,13 @@ function draw() {
         }
 
         //show speed text
-        text("SPEED: "+Math.round(Ship.speed * 100) / 100 , 200, 50);
-        fill('black');
+        if(shooting){
+            text("SPEED: "+Math.round(speed * 100) / 100 , 200, 50);
+            fill('black');
+        }else{
+            text("SPEED: " + Math.round(Ship.speed * 100) / 100, 200, 50);
+            fill('black');
+        }
         if(Ship.paddling) {
             //paddle
             Ship.paddle();
@@ -190,7 +196,13 @@ function update() {
         atborder=false;
         moveaway = 0;
     }
-
+    //if the player ship has its canons out then slow down the ship by 0.25
+    //creating a new var because if Ship -= 0.01 de acceleration
+    if(Ship.speed>0.25 && shooting){
+        speed =  Ship.speed - 0.25;
+    }else{
+        speed =  Ship.speed;
+    }
     //############################################### MOVE #############################################################
     //moving the shots
     let index = 0;
@@ -217,15 +229,15 @@ function update() {
         //converting angles to radians then getting the cos of these newly created radians (times the speed)
         //the same with y but except cos => sin
         //by this process we basically get the x and y of a degree
-        allislands[index].x += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
-        allislands[index].y += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
+        allislands[index].x += Math.cos(angle * (Math.PI / 180)) * speed;
+        allislands[index].y += Math.sin(angle * (Math.PI / 180)) * speed;
 
         index++;
     }
     //-----------
     //move the boarders
-    borderx += Math.cos(angle * (Math.PI / 180)) * Ship.speed;
-    bordery += Math.sin(angle * (Math.PI / 180)) * Ship.speed;
+    borderx += Math.cos(angle * (Math.PI / 180)) * speed;
+    bordery += Math.sin(angle * (Math.PI / 180)) * speed;
 
     //#################################################################################################################
 }
@@ -270,7 +282,7 @@ function keyPressed() {
     }
     //look for shooting
     if(key==='e' || key==='E'){
-        if(shootingE===false && shootingQ===false) {
+        if(shootingE===false && shootingQ===false && shooting===true) {
             //we want to shot five canon balls at a time
             //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
             for(let x = 0; x<5;x++) {
@@ -283,7 +295,7 @@ function keyPressed() {
     if(key==='q' || key==='Q'){
         //we want to shot five canon balls at a time
         //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
-        if(shootingE===false && shootingQ===false) {
+        if(shootingE===false && shootingQ===false && shooting===true) {
             for(let x = 0; x<5;x++){
                 SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate);
                 shots.push(SHOT);
@@ -293,7 +305,16 @@ function keyPressed() {
         }
     }
     //turning the ship sprite into a ship with canons to show that the ship is ready to fire
-
+    if(key==='r' || key==='R'){
+        //change the state of shooting
+        if(shooting===false){
+            shooting = true;
+            Ship.shooting = true;
+        }else{
+            shooting = false;
+            Ship.shooting = false;
+        }
+    }
 
 }
 

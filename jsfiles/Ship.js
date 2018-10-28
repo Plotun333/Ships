@@ -7,6 +7,8 @@ function ship() {
     this.paddling = false;
     //anchoring is equal to
     this.anchoring = false;
+    //shooting is equal ti
+    this.shooting = false;
     //the rotation of the player ship
     //the current speed of the player
     this.speed = 0;
@@ -16,6 +18,7 @@ function ship() {
     this.ShipShape = loadImage("images/ship.png");
     this.ShipShapePaddling = loadImage("images/shipPaddling.png");
     this.ShipShapeAnchoring = loadImage("images/shipAnchor.png");
+    this.ShipShapeShooting = loadImage("images/shipcanon.png");
     //the show function
     this.show = function () {
         //push() == save
@@ -35,6 +38,10 @@ function ship() {
         }else if(this.anchoring){
             //draw ship paddling
             image(this.ShipShapeAnchoring,-20,-60);
+
+        }else if(this.shooting){
+            //draw ship with canons
+            image(this.ShipShapeShooting,-20,-60);
         }else {
             //drawing image with new position
             image(this.ShipShape, -20, -60);
