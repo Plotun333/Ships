@@ -136,7 +136,7 @@ function draw() {
                 index++
             }
         }
-
+        console.log(Ship.Rotate);
         //show speed text
         if(shooting){
             text("SPEED: "+Math.round(speed * 100) / 100 , 200, 50);
@@ -286,8 +286,15 @@ function keyPressed() {
             //we want to shot five canon balls at a time
             //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
             for(let x = 0; x<5;x++) {
-                SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate);
-                shots.push(SHOT);
+                //resolving a rotation problem
+
+                if(Ship.Rotate>=45 && Ship.Rotate<=135 || Ship.Rotate<=-45 && Ship.Rotate>=-315 || Ship.Rotate>=225 && Ship.Rotate<=315 || Ship.Rotate<=-225 && Ship.Rotate>=-315) {
+                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate);
+                    shots.push(SHOT);
+                }else {
+                    SHOT = new Shot(Ship.x, Ship.y - 20 + x * 10, Ship.Rotate);
+                    shots.push(SHOT);
+                }
             }
             shootingE = true;
         }
@@ -297,8 +304,15 @@ function keyPressed() {
         //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
         if(shootingE===false && shootingQ===false && shooting===true) {
             for(let x = 0; x<5;x++){
-                SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate);
-                shots.push(SHOT);
+
+                //resolving a rotation problem
+                if(Ship.Rotate>=45 && Ship.Rotate<=135 || Ship.Rotate<=-45 && Ship.Rotate>=-135 || Ship.Rotate>=225 && Ship.Rotate<=315 || Ship.Rotate<=-225 && Ship.Rotate>=-315) {
+                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate);
+                    shots.push(SHOT);
+                }else{
+                    SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate);
+                    shots.push(SHOT);
+                }
             }
             shootingQ = true;
 
