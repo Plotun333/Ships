@@ -27,6 +27,9 @@ var shots = [];
 var shooting = false;
 //when shooting the ship slows down
 var speed = 0;
+//61 to simulate about to second since the game is going at abou 30fps
+var shootingpause = 61;
+var addtoshootingpause = false;
 
 //setup
 
@@ -203,6 +206,13 @@ function update() {
     }else{
         speed =  Ship.speed;
     }
+    //resolving shooting pause
+    if(shootingQ || shootingE){
+        addtoshootingpause = true;
+    }
+    if(addtoshootingpause){
+        shootingpause++;
+    }
     //############################################### MOVE #############################################################
     //moving the shots
     let index = 0;
@@ -249,6 +259,47 @@ function keyReleased(){
     if(key==='s' || key==='S'){
         Ship.anchoring = false;
     }
+    if(key==='e' || key==='E'){
+        if(shootingE===false && shootingQ===false && shooting===true && shootingpause>60) {
+            shootingpause = 0;
+            addtoshootingpause = false;
+            //we want to shot five canon balls at a time
+            //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
+            for(let x = 0; x<5;x++) {
+                //resolving a rotation problem
+
+                if(Ship.Rotate>=45 && Ship.Rotate<=135 || Ship.Rotate<=-45 && Ship.Rotate>=-135 || Ship.Rotate>=225 && Ship.Rotate<=315 || Ship.Rotate<=-225 && Ship.Rotate>=-315) {
+                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate);
+                    shots.push(SHOT);
+                }else {
+                    SHOT = new Shot(Ship.x, Ship.y - 20 + x * 10, Ship.Rotate);
+                    shots.push(SHOT);
+                }
+            }
+            shootingE = true;
+        }
+    }
+    if(key==='q' || key==='Q'){
+        //we want to shot five canon balls at a time
+        //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
+        if(shootingE===false && shootingQ===false && shooting===true&& shootingpause>60) {
+            shootingpause = 0;
+            addtoshootingpause = false;
+            for(let x = 0; x<5;x++){
+
+                //resolving a rotation problem
+                if(Ship.Rotate>=45 && Ship.Rotate<=135 || Ship.Rotate<=-45 && Ship.Rotate>=-135 || Ship.Rotate>=225 && Ship.Rotate<=315 || Ship.Rotate<=-225 && Ship.Rotate>=-315) {
+                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate);
+                    shots.push(SHOT);
+                }else{
+                    SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate);
+                    shots.push(SHOT);
+                }
+            }
+            shootingQ = true;
+
+        }
+    }
 }
 //un press
 function keyPressed() {
@@ -275,49 +326,14 @@ function keyPressed() {
     if(key==='w' || key==='W'){
         //start paddling
         Ship.paddling = true;
+        let canshot = true;
     }
     if(key==='s' || key==='S'){
         //start anchoring
         Ship.anchoring = true;
     }
-    //look for shooting
-    if(key==='e' || key==='E'){
-        if(shootingE===false && shootingQ===false && shooting===true) {
-            //we want to shot five canon balls at a time
-            //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
-            for(let x = 0; x<5;x++) {
-                //resolving a rotation problem
 
-                if(Ship.Rotate>=45 && Ship.Rotate<=135 || Ship.Rotate<=-45 && Ship.Rotate>=-315 || Ship.Rotate>=225 && Ship.Rotate<=315 || Ship.Rotate<=-225 && Ship.Rotate>=-315) {
-                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate);
-                    shots.push(SHOT);
-                }else {
-                    SHOT = new Shot(Ship.x, Ship.y - 20 + x * 10, Ship.Rotate);
-                    shots.push(SHOT);
-                }
-            }
-            shootingE = true;
-        }
-    }
-    if(key==='q' || key==='Q'){
-        //we want to shot five canon balls at a time
-        //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
-        if(shootingE===false && shootingQ===false && shooting===true) {
-            for(let x = 0; x<5;x++){
 
-                //resolving a rotation problem
-                if(Ship.Rotate>=45 && Ship.Rotate<=135 || Ship.Rotate<=-45 && Ship.Rotate>=-135 || Ship.Rotate>=225 && Ship.Rotate<=315 || Ship.Rotate<=-225 && Ship.Rotate>=-315) {
-                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate);
-                    shots.push(SHOT);
-                }else{
-                    SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate);
-                    shots.push(SHOT);
-                }
-            }
-            shootingQ = true;
-
-        }
-    }
     //turning the ship sprite into a ship with canons to show that the ship is ready to fire
     if(key==='r' || key==='R'){
         //change the state of shooting
