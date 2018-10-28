@@ -199,15 +199,30 @@ function update() {
     let Index = 0;
     for(let i = 0;i < allislands.length;i++){
         //going throw all of the islands
-        H = new HIT(allislands[Index].x,allislands[Index].y,Ship.x,Ship.y,500);
+        H = new HIT(allislands[Index].x,allislands[Index].y,Ship.x,Ship.y,250);
         if(H.collision){
             //the chance of a castle firing is 1 in 35
             let random = Math.floor(Math.random() * 35) + 1;
             if(random===1) {
                 //generate a two random numbers for x and y for the shot
+                var cord = [];
+                //different cords for different islands
 
-                let cord = [-35,120,15,240,130,150,100,80,140,150,];
-                let limit = 10;
+
+                if(allislands[Index].shape===1){
+                    cord = [-35, 120, 15, 240,130, 150];
+                }else if(allislands[Index].shape===2){
+                    cord = [-35,240,130,100,80];
+                }else if(allislands[Index].shape===3){
+                    cord = [-35, 120];
+                }else if(allislands[Index].shape===4){
+                    cord = [-35, 120, 130, 150, 100, 80, 140, 150,];
+                }else if(allislands[Index].shape===5){
+                    cord = [15, 240, 130, 150, 100, 80, 140, 150,];
+                }else {
+                    cord = [-35, 120, 15, 240, 130, 150, 100, 80, 140, 150,];
+                }
+                let limit = cord.length;
                 let random1= Math.floor(Math.random() *limit/2);
                 random1*=2;
 
