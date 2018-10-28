@@ -21,7 +21,8 @@ var moveaway = 0;
 
 //shooting
 //is the player shooting
-var shooting = false;
+var shootingE = false;
+var shootingQ = false;
 var shots = [];
 
 
@@ -90,7 +91,7 @@ function setup() {
                 allislands.push(I);
             }
         }
-        console.log(h);
+
 
 
 
@@ -127,10 +128,11 @@ function draw() {
 
         }
         //show shots
-        if(shots.lenght>0){
+        if(shots.length>0){
             let index = 0;
             for(let i = 0;i<shots.length;i++){
                 shots[index].show();
+                index++
             }
         }
 
@@ -190,10 +192,26 @@ function update() {
     }
 
     //############################################### MOVE #############################################################
-
+    //moving the shots
+    let index = 0;
+    for(let i = 0; i<shots.length;i++){
+        if(shots[index].destroy){
+            shots[index] = undefined;
+            shootingE = false;
+            shootingQ = false;
+            shots.splice(index,1);
+            break;
+        }
+        if(shootingE) {
+            shots[index].moveE();
+        }if (shootingQ) {
+            shots[index].moveQ();
+        }
+        index++;
+    }
 
     //going throw all of the islands ADD(and ships)
-    let index = 0;
+    index = 0;
     for(let i = 0;i<allislands.length;i++) {
 
         //converting angles to radians then getting the cos of these newly created radians (times the speed)
@@ -252,10 +270,29 @@ function keyPressed() {
     }
     //look for shooting
     if(key==='e' || key==='E'){
-        shot = new Shot(Ship.x,Ship,y);
-        shooting = true;
-        shots.push(shot);
+        if(shootingE===false && shootingQ===false) {
+            //we want to shot five canon balls at a time
+            //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
+            for(let x = 0; x<5;x++) {
+                SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate);
+                shots.push(SHOT);
+            }
+            shootingE = true;
+        }
     }
+    if(key==='q' || key==='Q'){
+        //we want to shot five canon balls at a time
+        //and we want to shot once the canon balls that were shot before these cannon balls have exited there limit
+        if(shootingE===false && shootingQ===false) {
+            for(let x = 0; x<5;x++){
+                SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate);
+                shots.push(SHOT);
+            }
+            shootingQ = true;
+
+        }
+    }
+    //turning the ship sprite into a ship with canons to show that the ship is ready to fire
 
 
 }
