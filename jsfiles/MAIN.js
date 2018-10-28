@@ -8,7 +8,7 @@ var start = true;
 //##############################
 //the number of islands (random)
 var islandcount = 385;
-
+var islandshots = [];
 
 //the aray of all the islands
 var allislands = [];
@@ -267,7 +267,6 @@ function update() {
         var index3 = 0;
         for (let x = 0;shots.length>x;x++){
             if(allislands[index2].hit(shots[index3].x,shots[index3].y)){
-                console.log('hit');
                 allislands[index2].lives--;
 
                 if(allislands[index2].lives<=0){

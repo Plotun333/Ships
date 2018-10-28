@@ -35,6 +35,7 @@ function Shot(x,y,angle) {
             this.destroy = true;
         }
     };
+
     this.show = function () {
         //show the image;
         image(this.shape,this.x,this.y);

@@ -19,10 +19,6 @@ function Island(x,y,shape) {
 
     this.show = function () {
         image(this.islandshape,this.x,this.y);
-
-
-
-
     };
     this.hit = function (x,y) {
         if(this.shape===0) {
