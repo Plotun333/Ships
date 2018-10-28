@@ -31,7 +31,7 @@ var shots = [];
 var shooting = false;
 //when shooting the ship slows down
 var speed = 0;
-//61 to simulate about to second since the game is going at abou 30fps
+//61 to simulate about to second since the game is going at about 30fps
 var shootingpause = 61;
 var addtoshootingpause = false;
 
@@ -131,10 +131,24 @@ function draw() {
         background('lightblue');
 
         //show the island
+        let index = 0;
         for(let i=0;i<allislands.length;i++){
-            allislands[i].show();
-
+            allislands[index].show();
+            index++;
         }
+        //show island shots
+        let index2 = 0;
+        for(let y=0;y<islandshots.length;y++){
+            islandshots[index2].show();
+            islandshots[index2].moveQ();
+            if(islandshots[index2].destroy){
+                islandshots[index2] = undefined;
+                islandshots.splice(index2,1);
+                break
+            }
+            index2++;
+        }
+
         //show shots
         if(shots.length>0){
             let index = 0;
@@ -181,6 +195,37 @@ function draw() {
 }
 //update
 function update() {
+    //checking if the ship close to a island if so then the castles from the island start firing at the shi
+    let Index = 0;
+    for(let i = 0;i < allislands.length;i++){
+        //going throw all of the islands
+        H = new HIT(allislands[Index].x,allislands[Index].y,Ship.x,Ship.y,500);
+        if(H.collision){
+            //the chance of a castle firing is 1 in 35
+            let random = Math.floor(Math.random() * 35) + 1;
+            if(random===1) {
+                //generate a two random numbers for x and y for the shot
+
+                let cord = [-35,120,15,240,130,150,100,80,140,150,];
+                let limit = 10;
+                let random1= Math.floor(Math.random() *limit/2);
+                random1*=2;
+
+                let random2 = random1+1;
+
+
+
+                //if the ship is in range of an island
+
+                islandshot = new Shot(allislands[Index].x+cord[random1], allislands[Index].y+cord[random2], int(Math.round(180 / Math.PI * (Math.atan2(allislands[Index].y - Ship.y, allislands[Index].x - Ship.x)))));
+                islandshot.range = -10;
+                //push to all shots
+                islandshots.push(islandshot)
+
+            }
+        }
+        Index++;
+    }
     //creating an angle var with Ship.Rotate (+90 because that radians think of the bottom of the screen as 90 degrees
     //Ship.Rotate starts at 0
     let angle = Ship.Rotate+90;

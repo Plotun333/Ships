@@ -4,7 +4,6 @@ function Island(x,y,shape) {
     this.shape = shape;
     this.lives = 5;
     this.islandshape = loadImage('images/island1.png');
-
     if(shape===1){
         this.islandshape = loadImage('images/island2.png');
     }else if(shape===2){
