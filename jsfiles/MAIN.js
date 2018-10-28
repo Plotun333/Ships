@@ -18,6 +18,10 @@ var borderx = 0;
 var bordery = 0;
 var atborder = false;
 var moveaway = 0;
+//############################
+//adding crew members
+var crew = 30;
+var shiphealth = 100;
 
 //shooting
 //is the player shooting
@@ -139,7 +143,6 @@ function draw() {
                 index++
             }
         }
-        console.log(Ship.Rotate);
         //show speed text
         if(shooting){
             text("SPEED: "+Math.round(speed * 100) / 100 , 200, 50);
@@ -148,6 +151,13 @@ function draw() {
             text("SPEED: " + Math.round(Ship.speed * 100) / 100, 200, 50);
             fill('black');
         }
+        //show crew
+        text("CREW: "+ crew, 400, 50);
+        fill('black');
+        //show shiphealth
+        text("SHIP HEALTH: "+ shiphealth, 600, 50);
+        fill('black');
+
         if(Ship.paddling) {
             //paddle
             Ship.paddle();
@@ -249,7 +259,29 @@ function update() {
     borderx += Math.cos(angle * (Math.PI / 180)) * speed;
     bordery += Math.sin(angle * (Math.PI / 180)) * speed;
 
-    //#################################################################################################################
+    //##################################################################################################################
+    //############################################### COLLISIONS #######################################################
+    //going throw all of the shots and all of the islands in two for loops and checks for collisions
+    let index2 = 0;
+    for(let i = 0; i<allislands.length;i++){
+        var index3 = 0;
+        for (let x = 0;shots.length>x;x++){
+            if(allislands[index2].hit(shots[index3].x,shots[index3].y)){
+                console.log('hit');
+                allislands[index2].lives--;
+
+                if(allislands[index2].lives<=0){
+                    allislands[index2] = undefined;
+                    allislands.splice(index2,1);
+                }
+                break;
+            }
+            index3++;
+        }
+       index2++;
+    }
+
+
 }
 //un release
 function keyReleased(){
