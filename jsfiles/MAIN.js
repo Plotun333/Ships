@@ -12,6 +12,7 @@ var islandshots = [];
 
 //the aray of all the islands
 var allislands = [];
+var allcapturedislands = [];
 //#############################
 //var for border
 var borderx = 0;
@@ -34,6 +35,11 @@ var speed = 0;
 //61 to simulate about to second since the game is going at about 30fps
 var shootingpause = 61;
 var addtoshootingpause = false;
+
+//score and coins
+var score = 0;
+var coins = 0;
+
 
 //setup
 
@@ -160,6 +166,12 @@ function draw() {
             index++;
 
         }
+        //show captured islands
+        let capturedislandindex = 0;
+        for(let x = 0; x<allcapturedislands.length;x++){
+            allcapturedislands[capturedislandindex].show();
+            capturedislandindex++;
+        }
         //show island shots
         let index2 = 0;
         for(let y=0;y<islandshots.length;y++){
@@ -209,19 +221,30 @@ function draw() {
             }
         }
         //show speed text
+        //if the ship is ready to shoot it slows down
         if(shooting){
+            fill('orange');
             text("SPEED: "+Math.round(speed * 100) / 100 , 200, 50);
-            fill('black');
+
         }else{
+            fill('orange');
             text("SPEED: " + Math.round(Ship.speed * 100) / 100, 200, 50);
-            fill('black');
+
         }
         //show crew
+        fill('black');
         text("CREW: "+ crew, 400, 50);
-        fill('black');
-        //show shiphealth
+        //show ship health
+        fill('red');
         text("SHIP HEALTH: "+ shiphealth, 600, 50);
-        fill('black');
+
+        //show score
+        fill('green');
+        text("SCORE: "+ score, 800, 50);
+
+        //show coins
+        fill('yellow');
+        text("COINS: "+ coins, 1000, 50);
 
         if(Ship.paddling) {
             //paddle
@@ -284,7 +307,7 @@ function update() {
                 //if the ship is in range of an island
 
                 islandshot = new Shot(allislands[Index].x+cord[random1], allislands[Index].y+cord[random2], int(Math.round(180 / Math.PI * (Math.atan2(allislands[Index].y - Ship.y+100, allislands[Index].x - Ship.x)))));
-                islandshot.range = -30;
+                islandshot.range = -20;
                 //push to all shots
                 islandshots.push(islandshot)
 
@@ -365,6 +388,18 @@ function update() {
 
         index++;
     }
+    index = 0;
+    //move the captured islands
+    for(let i = 0;i<allcapturedislands.length;i++) {
+
+        //converting angles to radians then getting the cos of these newly created radians (times the speed)
+        //the same with y but except cos => sin
+        //by this process we basically get the x and y of a degree
+        allcapturedislands[index].x += Math.cos(angle * (Math.PI / 180)) * speed;
+        allcapturedislands[index].y += Math.sin(angle * (Math.PI / 180)) * speed;
+
+        index++;
+    }
     //-----------
     //move the boarders
     borderx += Math.cos(angle * (Math.PI / 180)) * speed;
@@ -381,6 +416,28 @@ function update() {
                 allislands[index2].lives--;
 
                 if(allislands[index2].lives<=0){
+                    //changing the shape
+                    //new captured islands have different shapes
+                    if(allislands[index2].shape===0){
+                        allislands[index2].islandshape = loadImage('images/island10.png');
+                    }
+                    else if(allislands[index2].shape===1){
+                        allislands[index2].islandshape = loadImage('images/island20.png');
+                    }else if(allislands[index2].shape===2){
+                        allislands[index2].islandshape = loadImage('images/island30.png')
+                    }else if(allislands[index2].shape===3){
+                        allislands[index2].islandshape = loadImage('images/island40.png');
+                    }else if(allislands[index2].shape===4){
+                        allislands[index2].islandshape = loadImage('images/island50.png');
+                    }else if(allislands[index2].shape===5){
+                        allislands[index2].islandshape = loadImage('images/island60.png');
+                    }
+                    //add island to captured islands
+                    allcapturedislands.push(allislands[index2]);
+                    //add score
+                    score+=10;
+                    coins+=1000;
+                    //delete destroyed island
                     allislands[index2] = undefined;
                     allislands.splice(index2,1);
                 }
