@@ -284,15 +284,15 @@ function update() {
 
 
                 if(allislands[Index].shape===1){
-                    cord = [-35, 120, 15, 240,130, 150];
+                    cord = [-35, 120, 15, 240, 50, 150];
                 }else if(allislands[Index].shape===2){
-                    cord = [-35,240,130,100,80];
+                    cord = [-35,120, 50, 150, 100, 80];
                 }else if(allislands[Index].shape===3){
                     cord = [-35, 120];
                 }else if(allislands[Index].shape===4){
-                    cord = [-35, 120, 130, 150, 100, 80, 140, 150,];
+                    cord = [-35, 120,130, 150, 100, 80, 140, 150,];
                 }else if(allislands[Index].shape===5){
-                    cord = [15, 240, 130, 150, 100, 80, 140, 150,];
+                    cord = [-35, 120, 15, 240, 100, 80, 140, 150,];
                 }else {
                     cord = [-35, 120, 15, 240, 130, 150, 100, 80, 140, 150,];
                 }

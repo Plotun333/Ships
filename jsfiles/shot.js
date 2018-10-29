@@ -3,7 +3,7 @@ function Shot(x,y,angle) {
     this.x = x+100;
     this.y = y;
     //the range of the shot
-    this.range = 0;
+    this.range = -100;
     // boolean that check if the shot should be popped from the shots array
     this.destroy = false;
     //the speed

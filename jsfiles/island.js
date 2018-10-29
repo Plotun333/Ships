@@ -57,12 +57,12 @@ function Island(x,y,shape) {
             }
         }else if(this.shape===2){
             let d = dist(this.x + 65, this.y + 120, x, y);
-            let d2 = dist(this.x +110,this.y + 240,x,y);
+            let d3 = dist(this.x +150,this.y + 160,x,y);
             let d4 = dist(this.x +200,this.y + 80,x,y);
 
             if(d < 10) {
                 return true;
-            }else if(d2 < 10) {
+            }else if(d3 < 10) {
                 return true;
             }else if(d4 < 10) {
                 return true;
@@ -79,14 +79,13 @@ function Island(x,y,shape) {
             }
         }else if(this.shape===4) {
             let d = dist(this.x + 65, this.y + 120, x, y);
-            let d2 = dist(this.x +110,this.y + 240,x,y);
             let d3 = dist(this.x +150,this.y + 160,x,y);
-            let d4 = dist(this.x +240,this.y + 150,x,y);
-
+            let d4 = dist(this.x +200,this.y + 80,x,y);
+            let d5 = dist(this.x + 240,this.y + 150,x,y);
 
             if(d < 10) {
                 return true;
-            }else if(d2 < 10) {
+            }else if(d5 < 10) {
                 return true;
             }else if(d3 < 10) {
                 return true;
@@ -96,15 +95,15 @@ function Island(x,y,shape) {
                 return false;
             }
         }else if(this.shape===5) {
+            let d = dist(this.x + 65, this.y + 120, x, y);
             let d2 = dist(this.x +110,this.y + 240,x,y);
-            let d3 = dist(this.x +150,this.y + 160,x,y);
             let d4 = dist(this.x +200,this.y + 80,x,y);
             let d5 = dist(this.x + 240,this.y + 150,x,y);
 
 
             if(d2 < 10) {
                 return true;
-            }else if(d3 < 10) {
+            }else if(d < 10) {
                 return true;
             }else if(d4 < 10) {
                 return true;
