@@ -134,7 +134,31 @@ function draw() {
         let index = 0;
         for(let i=0;i<allislands.length;i++){
             allislands[index].show();
+            h = dist(allislands[index].x+150,allislands[index].y+150,Ship.x+100,Ship.y);
+            if(h<150){
+                shiphealth--;
+                let r = Math.floor(Math.random() * 5) + 1;
+                if(r===1){
+                    crew--;
+                }
+                //don not move when on land
+                Ship.speed = 0;
+                //gemaover screen
+                if(shiphealth<=0 || crew<=0) {
+                    fill('black');
+                    rect(0, 0, width, height);
+                    fill('red');
+                    textSize(100);
+                    text('GAME OVER', width / 2, height / 2);
+                    let skull = createImg("images/skull.gif");
+                    skull.position(width / 2 - 50, height / 2 + 100);
+
+
+                    Getout();
+                }
+            }
             index++;
+
         }
         //show island shots
         let index2 = 0;
@@ -260,7 +284,7 @@ function update() {
                 //if the ship is in range of an island
 
                 islandshot = new Shot(allislands[Index].x+cord[random1], allislands[Index].y+cord[random2], int(Math.round(180 / Math.PI * (Math.atan2(allislands[Index].y - Ship.y+100, allislands[Index].x - Ship.x)))));
-                islandshot.range = -10;
+                islandshot.range = -30;
                 //push to all shots
                 islandshots.push(islandshot)
 
