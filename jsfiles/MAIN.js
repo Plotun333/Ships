@@ -45,12 +45,45 @@ var coins = 0;
 var tradeinterace = false;
 //background
 var backgroundimage;
-
+//sounds list
+var sounds = [];
+var playing = false;
+var currentsong;
 //setup
 
 
+
+function Playsong() {
+
+    if(playing===false) {
+        playing = true;
+        let index = Math.floor(Math.random() * sounds.length) + 1;
+        index--;
+        currentsong=sounds[index];
+        currentsong.play();
+    }else{
+        playing = currentsong.isPlaying();
+    }
+
+
+}
+function preload() {
+
+    let song1 = loadSound('sounds/1.mp3');
+    let song2 = loadSound('sounds/2.mp3');
+    let song3 = loadSound('sounds/3.mp3');
+    let song4 = loadSound('sounds/4.mp3');
+
+    sounds.push(song1);
+    sounds.push(song2);
+    sounds.push(song3);
+    sounds.push(song4);
+
+}
+
 // the var map is there to check if the player wants the big canvas or the normal (fight) canvas
 function setup() {
+
     //text size
     textSize(50);
     textAlign(CENTER);
@@ -71,7 +104,7 @@ function setup() {
 
         //create all the islands
         //load background
-        backgroundimage = loadImage('images/sea.png');
+        backgroundimage = 'lightblue';
 
 
         //creating the starting island
@@ -137,7 +170,7 @@ function setup() {
 //draw
 
 function draw() {
-
+    Playsong();
     if(mapbig===false) {
 
         update();
