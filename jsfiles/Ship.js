@@ -211,6 +211,14 @@ function ship() {
         if(this.speed>0) {
             this.speed -= 0.025;
         }
+    };
+    this.hit = function (x,y) {
+        let d = dist(this.x+100, this.y , x, y);
+        if (d < 60) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

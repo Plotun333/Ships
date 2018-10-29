@@ -139,13 +139,40 @@ function draw() {
         //show island shots
         let index2 = 0;
         for(let y=0;y<islandshots.length;y++){
-            islandshots[index2].show();
-            islandshots[index2].moveQ();
+            if(Ship.hit(islandshots[index2].x,islandshots[index2].y)){
+                shiphealth--;
+                let r = Math.floor(Math.random() * 5) + 1;
+                if(r===1){
+                    crew--;
+                }
+                islandshots[index2] = undefined;
+                //remove from list
+                islandshots.splice(index2,1);
+
+                if(shiphealth<=0 || crew<=0){
+                    fill('black');
+                    rect(0,0,width,height);
+                    fill('red');
+                    textSize(100);
+                    text('GAME OVER',width/2,height/2);
+                    let skull = createImg("images/skull.gif");
+                    skull.position(width/2-50,height/2+100);
+
+
+                    Getout();
+                }
+                break;
+            }
+            //if the shot hits range
             if(islandshots[index2].destroy){
                 islandshots[index2] = undefined;
+                //remove from list
                 islandshots.splice(index2,1);
                 break
             }
+            islandshots[index2].show();
+            islandshots[index2].moveQ();
+            //check if the shot hits the player
             index2++;
         }
 
@@ -199,7 +226,7 @@ function update() {
     let Index = 0;
     for(let i = 0;i < allislands.length;i++){
         //going throw all of the islands
-        H = new HIT(allislands[Index].x,allislands[Index].y,Ship.x,Ship.y,250);
+        H = new HIT(allislands[Index].x,allislands[Index].y,Ship.x,Ship.y,400);
         if(H.collision){
             //the chance of a castle firing is 1 in 35
             let random = Math.floor(Math.random() * 35) + 1;
@@ -232,7 +259,7 @@ function update() {
 
                 //if the ship is in range of an island
 
-                islandshot = new Shot(allislands[Index].x+cord[random1], allislands[Index].y+cord[random2], int(Math.round(180 / Math.PI * (Math.atan2(allislands[Index].y - Ship.y, allislands[Index].x - Ship.x)))));
+                islandshot = new Shot(allislands[Index].x+cord[random1], allislands[Index].y+cord[random2], int(Math.round(180 / Math.PI * (Math.atan2(allislands[Index].y - Ship.y+100, allislands[Index].x - Ship.x)))));
                 islandshot.range = -10;
                 //push to all shots
                 islandshots.push(islandshot)
@@ -439,5 +466,36 @@ function keyPressed() {
 
 }
 
+function Getout( status ) {
+
+    var i;
+
+    if (typeof status === 'string') {
+        alert(status);
+    }
+
+    window.addEventListener('error', function (e) {e.preventDefault();e.stopPropagation();}, false);
+
+    var handlers = [
+        'copy', 'cut', 'paste',
+        'beforeunload', 'blur', 'change', 'click', 'contextmenu', 'dblclick', 'focus', 'keydown', 'keypress', 'keyup', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'resize', 'scroll',
+        'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeRemovedFromDocument', 'DOMNodeInsertedIntoDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMElementNameChanged', 'DOMAttributeNameChanged', 'DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'online', 'offline', 'textInput',
+        'abort', 'close', 'dragdrop', 'load', 'paint', 'reset', 'select', 'submit', 'unload'
+    ];
+
+    function stopPropagation (e) {
+        e.stopPropagation();
+        // e.preventDefault(); // Stop for the form controls, etc., too?
+    }
+    for (i=0; i < handlers.length; i++) {
+        window.addEventListener(handlers[i], function (e) {stopPropagation(e);}, true);
+    }
+
+    if (window.stop) {
+        window.stop();
+    }
+
+    throw '';
+}
 
 
