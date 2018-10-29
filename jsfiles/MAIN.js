@@ -3,6 +3,7 @@
 var mapbig = false;
 
 var start = true;
+//back ground
 
 //creating the Map
 //##############################
@@ -40,8 +41,13 @@ var addtoshootingpause = false;
 var score = 0;
 var coins = 0;
 
+//trade interface
+var tradeinterace = false;
+//background
+var backgroundimage;
 
 //setup
+
 
 // the var map is there to check if the player wants the big canvas or the normal (fight) canvas
 function setup() {
@@ -53,6 +59,7 @@ function setup() {
     angleMode(DEGREES);
     //Creating canvas
     createCanvas(1400, 700);
+
     //if game starts
     if(start===true){
         //init ship class
@@ -63,7 +70,8 @@ function setup() {
         Wind = new wind();
 
         //create all the islands
-
+        //load background
+        backgroundimage = loadImage('images/sea.png');
 
 
         //creating the starting island
@@ -113,7 +121,11 @@ function setup() {
         start=false;
 
     }
-    if(map===true) {
+    if(tradeinterace){
+
+    }
+
+    else if(map) {
         background('white');
 
     }else{
@@ -123,6 +135,7 @@ function setup() {
 }
 
 //draw
+
 function draw() {
 
     if(mapbig===false) {
@@ -134,7 +147,8 @@ function draw() {
         //change the direction of the wind
         Wind.change();
         //redraw the background to get rid of old images
-        background('lightblue');
+
+        background(backgroundimage);
 
         //show the island
         let index = 0;
@@ -143,7 +157,7 @@ function draw() {
             h = dist(allislands[index].x+150,allislands[index].y+150,Ship.x+100,Ship.y);
             if(h<150){
                 shiphealth--;
-                let r = Math.floor(Math.random() * 5) + 1;
+                let r = Math.floor(Math.random() * 3) + 1;
                 if(r===1){
                     crew--;
                 }
@@ -155,9 +169,9 @@ function draw() {
                     rect(0, 0, width, height);
                     fill('red');
                     textSize(100);
-                    text('GAME OVER', width / 2, height / 2);
-                    let skull = createImg("images/skull.gif");
-                    skull.position(width / 2 - 50, height / 2 + 100);
+                    text('GAME OVER', width / 2, 100);
+                    let skull = createImg("https://media.giphy.com/media/l3V0yA9zHe5m29sxW/giphy.gif");
+                    skull.position(width / 2 - 200, height / 2 -150);
 
 
                     Getout();
@@ -177,7 +191,7 @@ function draw() {
         for(let y=0;y<islandshots.length;y++){
             if(Ship.hit(islandshots[index2].x,islandshots[index2].y)){
                 shiphealth--;
-                let r = Math.floor(Math.random() * 5) + 1;
+                let r = Math.floor(Math.random() * 3) + 1;
                 if(r===1){
                     crew--;
                 }
@@ -190,9 +204,9 @@ function draw() {
                     rect(0,0,width,height);
                     fill('red');
                     textSize(100);
-                    text('GAME OVER',width/2,height/2);
-                    let skull = createImg("images/skull.gif");
-                    skull.position(width/2-50,height/2+100);
+                    text('GAME OVER', width / 2, 100);
+                    let skull = createImg("https://media.giphy.com/media/l3V0yA9zHe5m29sxW/giphy.gif");
+                    skull.position(width / 2 - 200, height / 2 -150);
 
 
                     Getout();
@@ -222,29 +236,30 @@ function draw() {
         }
         //show speed text
         //if the ship is ready to shoot it slows down
+        textSize(20);
         if(shooting){
-            fill('orange');
+            fill('black');
             text("SPEED: "+Math.round(speed * 100) / 100 , 200, 50);
 
         }else{
-            fill('orange');
+            fill('black');
             text("SPEED: " + Math.round(Ship.speed * 100) / 100, 200, 50);
 
         }
         //show crew
         fill('black');
-        text("CREW: "+ crew, 400, 50);
+        text("CREW: "+ crew, 1200, 60);
         //show ship health
         fill('red');
-        text("SHIP HEALTH: "+ shiphealth, 600, 50);
+        text("SHIP HEALTH: "+ shiphealth, 1200, 80);
 
         //show score
         fill('green');
-        text("SCORE: "+ score, 800, 50);
+        text("SCORE: "+ score, 1200, 100);
 
         //show coins
-        fill('yellow');
-        text("COINS: "+ coins, 1000, 50);
+        fill('white');
+        text("COINS: "+ coins, 1200, 120);
 
         if(Ship.paddling) {
             //paddle
@@ -447,7 +462,13 @@ function update() {
         }
        index2++;
     }
-
+    //################################################################### TRADE ########################################
+    index = 0;
+    for(let y = 0;y<allcapturedislands;y++){
+        if(Ship.hit(allcapturedislands[index].x,allcapturedislands[index].y)){
+            setup();
+        }
+    }
 
 }
 //un release
