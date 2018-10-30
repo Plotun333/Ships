@@ -47,38 +47,51 @@ var tradeinterace = false;
 var backgroundimage;
 //sounds list
 var sounds = [];
-var playing = false;
+
 var currentsong;
+var loaded = true;
+var loadingscreen;
+var playing = false;
+//fonts
+var fonts;
+
 //setup
 
 
 
 function Playsong() {
 
-    if(playing===false) {
+    if (playing === false) {
         playing = true;
         let index = Math.floor(Math.random() * sounds.length) + 1;
         index--;
-        currentsong=sounds[index];
+        console.log(index);
+        currentsong = sounds[index];
         currentsong.play();
-    }else{
+    } else {
         playing = currentsong.isPlaying();
     }
-
+}
+function Playsong1(song1) {
+    sounds.push(song1);
+}function Playsong2(song2) {
+    sounds.push(song2);
+}
+function Playsong3(song3) {
+    sounds.push(song3);
+}
+function Playsong4(song4) {
+    sounds.push(song4);
+    loaded = false;
 
 }
+
+
+
+
 function preload() {
-
-    let song1 = loadSound('sounds/1.mp3');
-    let song2 = loadSound('sounds/2.mp3');
-    let song3 = loadSound('sounds/3.mp3');
-    let song4 = loadSound('sounds/4.mp3');
-
-    sounds.push(song1);
-    sounds.push(song2);
-    sounds.push(song3);
-    sounds.push(song4);
-
+    loadingscreen = loadImage('images/loadingScreen.jpg');
+    fonts = loadFont('Fonts/RAPSCALL.TTF');
 }
 
 // the var map is there to check if the player wants the big canvas or the normal (fight) canvas
@@ -148,10 +161,15 @@ function setup() {
         }
 
 
-
+        //load songs
+        let song1 = loadSound('sounds/1.mp3',Playsong1);
+        let song2 = loadSound('sounds/2.mp3',Playsong2);
+        let song3 = loadSound('sounds/3.mp3',Playsong3);
+        let song4 = loadSound('sounds/4.mp3',Playsong4);
 
         //it is no longer the start of the game
         start=false;
+
 
     }
     if(tradeinterace){
@@ -170,148 +188,162 @@ function setup() {
 //draw
 
 function draw() {
-    Playsong();
-    if(mapbig===false) {
+    if(loaded===true) {
+        image(loadingscreen, 0,0);
+        fill('orange');
+        textSize(100);
 
-        update();
-
-
-
-        //change the direction of the wind
-        Wind.change();
-        //redraw the background to get rid of old images
-
-        background(backgroundimage);
-
-        //show the island
-        let index = 0;
-        for(let i=0;i<allislands.length;i++){
-            allislands[index].show();
-            h = dist(allislands[index].x+150,allislands[index].y+150,Ship.x+100,Ship.y);
-            if(h<150){
-                shiphealth--;
-                let r = Math.floor(Math.random() * 3) + 1;
-                if(r===1){
-                    crew--;
-                }
-                //don not move when on land
-                Ship.speed = 0;
-                //gemaover screen
-                if(shiphealth<=0 || crew<=0) {
-                    fill('black');
-                    rect(0, 0, width, height);
-                    fill('red');
-                    textSize(100);
-                    text('GAME OVER', width / 2, 100);
-                    let skull = createImg("https://media.giphy.com/media/l3V0yA9zHe5m29sxW/giphy.gif");
-                    skull.position(width / 2 - 200, height / 2 -150);
-
-
-                    Getout();
-                }
-            }
-            index++;
-
-        }
-        //show captured islands
-        let capturedislandindex = 0;
-        for(let x = 0; x<allcapturedislands.length;x++){
-            allcapturedislands[capturedislandindex].show();
-            capturedislandindex++;
-        }
-        //show island shots
-        let index2 = 0;
-        for(let y=0;y<islandshots.length;y++){
-            if(Ship.hit(islandshots[index2].x,islandshots[index2].y)){
-                shiphealth--;
-                let r = Math.floor(Math.random() * 3) + 1;
-                if(r===1){
-                    crew--;
-                }
-                islandshots[index2] = undefined;
-                //remove from list
-                islandshots.splice(index2,1);
-
-                if(shiphealth<=0 || crew<=0){
-                    fill('black');
-                    rect(0,0,width,height);
-                    fill('red');
-                    textSize(100);
-                    text('GAME OVER', width / 2, 100);
-                    let skull = createImg("https://media.giphy.com/media/l3V0yA9zHe5m29sxW/giphy.gif");
-                    skull.position(width / 2 - 200, height / 2 -150);
-
-
-                    Getout();
-                }
-                break;
-            }
-            //if the shot hits range
-            if(islandshots[index2].destroy){
-                islandshots[index2] = undefined;
-                //remove from list
-                islandshots.splice(index2,1);
-                break
-            }
-            islandshots[index2].show();
-            islandshots[index2].moveQ();
-            //check if the shot hits the player
-            index2++;
-        }
-
-        //show shots
-        if(shots.length>0){
-            let index = 0;
-            for(let i = 0;i<shots.length;i++){
-                shots[index].show();
-                index++
-            }
-        }
-        //show speed text
-        //if the ship is ready to shoot it slows down
-        textSize(20);
-        if(shooting){
-            fill('black');
-            text("SPEED: "+Math.round(speed * 100) / 100 , 200, 50);
-
-        }else{
-            fill('black');
-            text("SPEED: " + Math.round(Ship.speed * 100) / 100, 200, 50);
-
-        }
-        //show crew
-        fill('black');
-        text("CREW: "+ crew, 1200, 60);
-        //show ship health
-        fill('red');
-        text("SHIP HEALTH: "+ shiphealth, 1200, 80);
-
-        //show score
+        textFont(fonts);
+        text("SEA THIEF",500,100);
         fill('green');
-        text("SCORE: "+ score, 1200, 100);
+        textSize(60);
+        text("Loading...",600,500)
 
-        //show coins
-        fill('white');
-        text("COINS: "+ coins, 1200, 120);
-
-        if(Ship.paddling) {
-            //paddle
-            Ship.paddle();
-        }else if(Ship.anchoring){
-            Ship.anchor();
-
-        }else{
-            //move the player according to the wind
-            Ship.movefront(Wind.dir);
-        }
-        //show the player ship
-        Ship.show();
-        //show the compass
-        Wind.compass();
     }
-    if(mapbig===true){
-        // if m is pressed than show the mission canvas
-        Map.show();
+    else {
+        textSize(10);
+        Playsong();
+        if (mapbig === false) {
+
+            update();
+
+
+            //change the direction of the wind
+            Wind.change();
+            //redraw the background to get rid of old images
+
+            background(backgroundimage);
+
+            //show the island
+            let index = 0;
+            for (let i = 0; i < allislands.length; i++) {
+                allislands[index].show();
+                h = dist(allislands[index].x + 150, allislands[index].y + 150, Ship.x + 100, Ship.y);
+                if (h < 150) {
+                    shiphealth--;
+                    let r = Math.floor(Math.random() * 3) + 1;
+                    if (r === 1) {
+                        crew--;
+                    }
+                    //don not move when on land
+                    Ship.speed = 0;
+                    //gemaover screen
+                    if (shiphealth <= 0 || crew <= 0) {
+                        fill('black');
+                        rect(0, 0, width, height);
+                        fill('red');
+                        textSize(100);
+                        text('GAME OVER', width / 2, 100);
+                        let skull = createImg("https://media.giphy.com/media/l3V0yA9zHe5m29sxW/giphy.gif");
+                        skull.position(width / 2 - 200, height / 2 - 150);
+
+
+                        Getout();
+                    }
+                }
+                index++;
+
+            }
+            //show captured islands
+            let capturedislandindex = 0;
+            for (let x = 0; x < allcapturedislands.length; x++) {
+                allcapturedislands[capturedislandindex].show();
+                capturedislandindex++;
+            }
+            //show island shots
+            let index2 = 0;
+            for (let y = 0; y < islandshots.length; y++) {
+                if (Ship.hit(islandshots[index2].x, islandshots[index2].y)) {
+                    shiphealth--;
+                    let r = Math.floor(Math.random() * 3) + 1;
+                    if (r === 1) {
+                        crew--;
+                    }
+                    islandshots[index2] = undefined;
+                    //remove from list
+                    islandshots.splice(index2, 1);
+
+                    if (shiphealth <= 0 || crew <= 0) {
+                        fill('black');
+                        rect(0, 0, width, height);
+                        fill('red');
+                        textSize(100);
+                        text('GAME OVER', width / 2, 100);
+                        let skull = createImg("https://media.giphy.com/media/l3V0yA9zHe5m29sxW/giphy.gif");
+                        skull.position(width / 2 - 200, height / 2 - 150);
+
+
+                        Getout();
+                    }
+                    break;
+                }
+                //if the shot hits range
+                if (islandshots[index2].destroy) {
+                    islandshots[index2] = undefined;
+                    //remove from list
+                    islandshots.splice(index2, 1);
+                    break
+                }
+                islandshots[index2].show();
+                islandshots[index2].moveQ();
+                //check if the shot hits the player
+                index2++;
+            }
+
+            //show shots
+            if (shots.length > 0) {
+                let index = 0;
+                for (let i = 0; i < shots.length; i++) {
+                    shots[index].show();
+                    index++
+                }
+            }
+            //show speed text
+            //if the ship is ready to shoot it slows down
+            textSize(20);
+            if (shooting) {
+                fill('black');
+                text("SPEED: " + Math.round(speed * 100) / 100, 200, 50);
+
+            } else {
+                fill('black');
+                text("SPEED: " + Math.round(Ship.speed * 100) / 100, 200, 50);
+
+            }
+            //show crew
+            fill('black');
+            text("CREW: " + crew, 1200, 60);
+            //show ship health
+            fill('red');
+            text("SHIP HEALTH: " + shiphealth, 1200, 80);
+
+            //show score
+            fill('green');
+            text("SCORE: " + score, 1200, 100);
+
+            //show coins
+            fill('white');
+            text("COINS: " + coins, 1200, 120);
+
+            if (Ship.paddling) {
+                //paddle
+                Ship.paddle();
+            } else if (Ship.anchoring) {
+                Ship.anchor();
+
+            } else {
+                //move the player according to the wind
+                Ship.movefront(Wind.dir);
+            }
+            //show the player ship
+            Ship.show();
+            //show the compass
+            Wind.compass();
+        }
+        if (mapbig === true) {
+            // if m is pressed than show the mission canvas
+            Map.show();
+        }
     }
 
 }
