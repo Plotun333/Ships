@@ -12,6 +12,7 @@ function ship() {
     //the rotation of the player ship
     //the current speed of the player
     this.speed = 0;
+    this.maxspeed = 1.5;
     this.Rotate = 0;
 
     //the ship image
@@ -79,7 +80,7 @@ function ship() {
         //if wind is somewhere between 10 and -10 then that means that the wind right behind the player
         //speed 1.5
         if((wind)<10 && (wind)>-10){
-            if(this.speed<=1.5) {
+            if(this.speed<=this.maxspeed) {
                 //acceleration or 0.005 per a frame (fairly slow)
                 this.speed += 0.005;
             }
@@ -88,7 +89,7 @@ function ship() {
         //of the player but it is still basically behind him
         //speed 1.25
         else if((wind)<20 && (wind)>-20){
-            if(this.speed<=1.25) {
+            if(this.speed<=this.maxspeed-0.25) {
                 this.speed += 0.005;
             }
             else{
@@ -99,7 +100,7 @@ function ship() {
         // to the left/right of the player and behind him
         //speed 1
         else if(wind<40 && (wind)>-40){
-            if(this.speed<=1) {
+            if(this.speed<=this.maxspeed-0.5) {
                 this.speed += 0.005;
             }
             else{
@@ -110,7 +111,7 @@ function ship() {
         // since sale ships can reach high speeds when the wind is going from the right or left side of them
         //speed 1.25
         else if((wind)<90 && (wind)>-90) {
-            if (this.speed <= 1.25) {
+            if (this.speed <= this.maxspeed-0.25) {
                 this.speed += 0.005;
             } else {
                 this.speed -= 0.005;
@@ -121,7 +122,7 @@ function ship() {
         //of the player but it is still basically in front of him
         //speed 1.25
         else if((wind)<120 && (wind)>-120){
-            if(this.speed<=1) {
+            if(this.speed<=this.maxspeed-0.5) {
                 this.speed += 0.005;
             }
             else{
@@ -135,7 +136,7 @@ function ship() {
         //if wind is 350 or -350 then that means that the wind right behind the player
         //speed 1.5
         else if((wind)>350 || (wind)<-350){
-            if(this.speed<=1.5) {
+            if(this.speed<=this.maxspeed) {
                 //acceleration or 0.005 per a frame (fairly slow)
                 this.speed += 0.005;
             }
@@ -144,7 +145,7 @@ function ship() {
         //of the player but it is still basically behind him
         //speed 1.25
         else if((wind)>340 || (wind)<-340){
-            if(this.speed<=1.25) {
+            if(this.speed<=this.maxspeed-0.25) {
                 this.speed += 0.005;
             }
             else{
@@ -155,7 +156,7 @@ function ship() {
         // to the left/right of the player and behind him
         //speed 1
         else if(wind>300 || (wind)<-300){
-            if(this.speed<=1) {
+            if(this.speed<=this.maxspeed-0.5) {
                 this.speed += 0.005;
             }
             else{
@@ -166,7 +167,7 @@ function ship() {
         // since sale ships can reach high speeds when the wind is going from the right or left side of them
         //speed 1.25
         else if((wind)>270 || (wind)<-270) {
-            if (this.speed <= 1.25) {
+            if (this.speed <= this.maxspeed-0.25) {
                 this.speed += 0.005;
             } else {
                 this.speed -= 0.005;
@@ -177,7 +178,7 @@ function ship() {
         //of the player but it is still basically in front of him
         //speed 1.25
         else if((wind)>240 || (wind)<-240){
-            if(this.speed<=1) {
+            if(this.speed<=this.maxspeed-0.5) {
                 this.speed += 0.005;
             }
             else{
@@ -196,11 +197,12 @@ function ship() {
     //get a constant speed with paddle
     this.paddle = function () {
         this.paddling = true;
-        if(this.speed<=0.3) {
-            this.speed += 0.01;
+        if(this.speed<=this.maxspeed-1.2) {
+
+            this.speed += 0.005;
         }
         else{
-            this.speed -= 0.01;
+            this.speed -= 0.005;
         }
 
 

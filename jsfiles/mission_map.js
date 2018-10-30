@@ -5,7 +5,7 @@ function Mission_map() {
     this.y = 0;
 
     // the map shape (picture)
-    this.Shape = loadImage('images/MAP.png');
+    this.Shape = loadImage('images/tradebackground.png');
 
     //creating the image
     this.show = function () {

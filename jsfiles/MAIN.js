@@ -35,6 +35,7 @@ var shooting = false;
 var speed = 0;
 //61 to simulate about to second since the game is going at about 30fps
 var shootingpause = 61;
+var range = 0;
 var addtoshootingpause = false;
 
 //score and coins
@@ -54,7 +55,9 @@ var loadingscreen;
 var playing = false;
 //fonts
 var fonts;
-
+var tutorial = false;
+//tutorial background
+var t;
 //setup
 
 
@@ -91,6 +94,7 @@ function Playsong4(song4) {
 
 function preload() {
     loadingscreen = loadImage('images/loadingScreen.jpg');
+    t = loadImage('images/tutorialbackground.jpg');
     fonts = loadFont('Fonts/RAPSCALL.TTF');
 }
 
@@ -136,7 +140,7 @@ function setup() {
         let lastx = 0;
         for(let z=0;z<islandcount; z++) {
 
-            if(x<10000 && y<10000) {
+            if(x<5000 && y<5000) {
                 h++;
                 x +=100;
 
@@ -159,7 +163,7 @@ function setup() {
                 allislands.push(I);
             }
         }
-
+        //imagesloading
 
         //load songs
         let song1 = loadSound('sounds/1.mp3',Playsong1);
@@ -189,6 +193,7 @@ function setup() {
 
 function draw() {
     if(loaded===true) {
+
         image(loadingscreen, 0,0);
         fill('orange');
         textSize(100);
@@ -197,8 +202,40 @@ function draw() {
         text("SEA THIEF",500,100);
         fill('green');
         textSize(60);
-        text("Loading...",600,500)
+        text("Loading...",600,500);
+        //delay
 
+    }
+    else if(loaded===false && tutorial===false){
+
+        image(t,0,0);
+        fill('grey');
+        textSize(100);
+
+        text("TUTORIAL",700,150);
+
+        fill('black');
+        textSize(25);
+        text('SIR MORGAN',1200,600);
+        fill('red');
+        text('PRESS SPACE TO PLAY',200,600);
+        fill('black');
+        text('IT IS THE YEAR 1670 AND YOU CALL YOUR SELF A PIRATE. YOUR GOAL \n' +
+            'IS TO INVADE AS MANY CITIES POSSIBLE. THERE WILL BE BRITISH SHIP THAT \n' +
+            'SHALL TRY TO DESTROY YOU BUT FEAR NOT YOU ARE KNOWN AS ONE OF THE BEST \n'+
+            'CAPTAINS TO EVER SALE THE SEA. I BET YOU WILL DO ALL RIGHT. YOUR SHIP IS \n' +
+            'CALLED THE SHADOWS OF THE SEA. YOU ROTATE YOUR SHIP USING THE \n'+
+            'KEYS "D" AND "A" YOU PREPARE YOU SHIP TO FIRE WITH THE KEY "R" \n' +
+
+            'AND YOU FIRE WITH THE KEYS "Q" AND "E". YOU CAN START ROWING BY PRESSING "W".\n' +
+            'AND ANCHOR BY PRESSING "S". THE WIND SHALL BE DISPLAY ON THE TOP RIGHT CORNER \n' +
+            'OF THE SCREEN. YOU CAN BUY UPGRADES WITH COINS ONCE YOU ARRIVE AT FRIENDLY ISLAND \n' +
+            '\n' +
+            '                                                             GOOD LUCK',width/2-145,200)
+
+
+
+        //delay
     }
     else {
         textSize(10);
@@ -343,6 +380,26 @@ function draw() {
         if (mapbig === true) {
             // if m is pressed than show the mission canvas
             Map.show();
+            textSize(70);
+            fill('orange');
+            text("TRADING",700,100);
+            textSize(40);
+            fill('yellow');
+            text("CREW: "+crew,200,50);
+            text("SHIP HEALTH: "+shiphealth,200,100);
+            text("BULLET RANGE: "+ -1*range+15,200,150);
+            text("SHIP MAX SPEED: "+Ship.maxspeed,200,200);
+            text("COINS: "+coins,200,250);
+
+            fill('yellow');
+            text("1 CREW = 100 COINS PRESS Z",700,350);
+            text("1 SHIP HEALTH = 30 COINS PRESS X",700,400);
+            text("add 1 BULLET RANGE = 150 COINS PRESS C",700,450);
+            text("add 1 SHIP MAX SPEED = 5000 COINS PRESS V",700,500);
+            fill('red');
+            text("TO EXIT PRESS N",700,600);
+
+
         }
     }
 
@@ -386,8 +443,8 @@ function update() {
 
                 //if the ship is in range of an island
 
-                islandshot = new Shot(allislands[Index].x+cord[random1], allislands[Index].y+cord[random2], int(Math.round(180 / Math.PI * (Math.atan2(allislands[Index].y - Ship.y+100, allislands[Index].x - Ship.x)))));
-                islandshot.range = -20;
+                islandshot = new Shot(allislands[Index].x+cord[random1], allislands[Index].y+cord[random2], int(Math.round(180 / Math.PI * (Math.atan2(allislands[Index].y - Ship.y+100, allislands[Index].x - Ship.x)))),-40);
+
                 //push to all shots
                 islandshots.push(islandshot)
 
@@ -513,7 +570,8 @@ function update() {
                         allislands[index2].islandshape = loadImage('images/island60.png');
                     }
                     //add island to captured islands
-                    allcapturedislands.push(allislands[index2]);
+                    let land = allislands[index2];
+                    allcapturedislands.push(land);
                     //add score
                     score+=10;
                     coins+=1000;
@@ -529,10 +587,17 @@ function update() {
     }
     //################################################################### TRADE ########################################
     index = 0;
-    for(let y = 0;y<allcapturedislands;y++){
-        if(Ship.hit(allcapturedislands[index].x,allcapturedislands[index].y)){
+    for(let y = 0;y<allcapturedislands.length;y++){
+        h = dist(allcapturedislands[index].x + 150, allcapturedislands[index].y + 150, Ship.x + 100, Ship.y);
+        if (h < 150) {
+            Ship.Rotate+=180;
+            //this is the big map of the player screen
+            mapbig = true;
+            //reset canvas
             setup();
+
         }
+        index++;
     }
 
 }
@@ -554,10 +619,10 @@ function keyReleased(){
                 //resolving a rotation problem
 
                 if(Ship.Rotate>=45 && Ship.Rotate<=135 || Ship.Rotate<=-45 && Ship.Rotate>=-135 || Ship.Rotate>=225 && Ship.Rotate<=315 || Ship.Rotate<=-225 && Ship.Rotate>=-315) {
-                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate);
+                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate,range);
                     shots.push(SHOT);
                 }else {
-                    SHOT = new Shot(Ship.x, Ship.y - 20 + x * 10, Ship.Rotate);
+                    SHOT = new Shot(Ship.x, Ship.y - 20 + x * 10, Ship.Rotate,range);
                     shots.push(SHOT);
                 }
             }
@@ -574,10 +639,10 @@ function keyReleased(){
 
                 //resolving a rotation problem
                 if(Ship.Rotate>=45 && Ship.Rotate<=135 || Ship.Rotate<=-45 && Ship.Rotate>=-135 || Ship.Rotate>=225 && Ship.Rotate<=315 || Ship.Rotate<=-225 && Ship.Rotate>=-315) {
-                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate);
+                    SHOT = new Shot(Ship.x - 20 + x * 10, Ship.y, Ship.Rotate,range);
                     shots.push(SHOT);
                 }else{
-                    SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate);
+                    SHOT = new Shot(Ship.x, Ship.y-20+x*10, Ship.Rotate,range);
                     shots.push(SHOT);
                 }
             }
@@ -588,17 +653,39 @@ function keyReleased(){
 }
 //un press
 function keyPressed() {
-    //checking for the big map request
-    if(key==='m'|| key==='M' && mapbig===false){
-        //this is the big map of the player screen
-        mapbig = true;
-        //reset canvas
-        setup();
+    if(key===' '|| key===' '){
+        tutorial = true;
     }
     if(key==='n'|| key==='N' && mapbig===true){
         //this is the big map of the player screen
         mapbig = false;
         setup();
+    }
+    if(key==='z'|| key==='Z' && mapbig===true){
+        if(coins>=100) {
+            crew += 1;
+            coins -= 100;
+        }
+
+    }
+    if(key==='x'|| key==='X' && mapbig===true){
+        if(coins>=30) {
+            shiphealth += 1;
+            coins -= 30;
+        }
+
+    }
+    if(key==='c'|| key==='C' && mapbig===true) {
+        if (coins >= 150) {
+            range -= 1;
+            coins -= 150;
+        }
+    }
+    if(key==='v'|| key==='V' && mapbig===true) {
+        if (coins >= 5000) {
+            Ship.maxspeed += 1;
+            coins -= 5000;
+        }
     }
     if(key==='d'|| key==='D'){
         //rotate the ship counterclockwise

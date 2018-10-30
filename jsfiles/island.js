@@ -2,7 +2,7 @@ function Island(x,y,shape) {
     this.x = x;
     this.y = y;
     this.shape = shape;
-    this.lives = 5;
+    this.lives = 30;
     this.islandshape = loadImage('images/island1.png');
     if(this.shape===1){
         this.islandshape = loadImage('images/island2.png');

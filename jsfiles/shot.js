@@ -1,9 +1,9 @@
-function Shot(x,y,angle) {
+function Shot(x,y,angle,range) {
     //the x and y of the shot
     this.x = x+100;
     this.y = y;
     //the range of the shot
-    this.range = 0;
+    this.range = range;
     // boolean that check if the shot should be popped from the shots array
     this.destroy = false;
     //the speed
