@@ -85,6 +85,9 @@ function Playsong3(song3) {
 }
 function Playsong4(song4) {
     sounds.push(song4);
+
+}function Playsong5(song5) {
+    sounds.push(song5);
     loaded = false;
 
 }
@@ -170,7 +173,7 @@ function setup() {
         let song2 = loadSound('sounds/2.mp3',Playsong2);
         let song3 = loadSound('sounds/3.mp3',Playsong3);
         let song4 = loadSound('sounds/4.mp3',Playsong4);
-
+        let song5 = loadSound('sounds/5.mp3',Playsong5);
         //it is no longer the start of the game
         start=false;
 
@@ -391,7 +394,7 @@ function draw() {
             text("SHIP MAX SPEED: "+Ship.maxspeed,200,200);
             text("COINS: "+coins,200,250);
 
-            fill('yellow');
+            fill('lightgreen');
             text("1 CREW = 100 COINS PRESS Z",700,350);
             text("1 SHIP HEALTH = 30 COINS PRESS X",700,400);
             text("add 1 BULLET RANGE = 150 COINS PRESS C",700,450);

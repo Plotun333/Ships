@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c7c7a69-2e9e-460d-a8cc-7f523a0d3816" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/images/tradebackground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/5.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/skull.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/tradebackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/tradebackground.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jsfiles/MAIN.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/MAIN.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsfiles/Ship.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/Ship.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsfiles/island.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/island.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsfiles/mission_map.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/mission_map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsfiles/shot.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/shot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/1.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/1.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/2.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/2.mp3" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,15 +37,15 @@
           <entry key="TTF" value="1" />
           <entry key="gif" value="1" />
           <entry key="html" value="5" />
-          <entry key="jpg" value="9" />
+          <entry key="jpg" value="10" />
           <entry key="js" value="23" />
-          <entry key="png" value="8" />
+          <entry key="png" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="5" />
-          <entry key="Image" value="18" />
+          <entry key="Image" value="20" />
           <entry key="JavaScript" value="23" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
@@ -55,15 +53,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="277" />
-          <entry key="js" value="27462" />
-          <entry key="txt" value="514" />
+          <entry key="js" value="27690" />
+          <entry key="txt" value="522" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="277" />
-          <entry key="JavaScript" value="27462" />
-          <entry key="PLAIN_TEXT" value="514" />
+          <entry key="JavaScript" value="27690" />
+          <entry key="PLAIN_TEXT" value="522" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -72,11 +70,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SHIP.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="138">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -108,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jsfiles/MAIN.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="218" column="32" selection-start-line="218" selection-start-column="32" selection-end-line="218" selection-end-column="32" />
+            <state relative-caret-position="3612">
+              <caret line="396" column="28" selection-start-line="396" selection-start-column="28" selection-end-line="396" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -234,8 +232,8 @@
       <recent name="C:\Users\morga\WebstormProjects\Ships" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\morga\WebstormProjects\Ships\Fonts" />
       <recent name="C:\Users\morga\WebstormProjects\Ships\sounds" />
+      <recent name="C:\Users\morga\WebstormProjects\Ships\Fonts" />
       <recent name="C:\Users\morga\WebstormProjects\Ships\libraries\p5.gif.js-master\examples" />
       <recent name="C:\Users\morga\WebstormProjects\Ships" />
       <recent name="C:\Users\morga\WebstormProjects\Ships\images" />
@@ -269,7 +267,7 @@
       <workItem from="1540627480903" duration="5250000" />
       <workItem from="1540664562844" duration="8336000" />
       <workItem from="1540710973400" duration="25468000" />
-      <workItem from="1540887668601" duration="20067000" />
+      <workItem from="1540887668601" duration="23295000" />
     </task>
     <task id="LOCAL-00001" summary="adding starting island">
       <created>1540491835444</created>
@@ -446,11 +444,18 @@
       <option name="project" value="LOCAL" />
       <updated>1540892152103</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="tutorial">
+      <created>1540926424309</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1540926424309</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151837000" />
+    <option name="totallyTimeSpent" value="155065000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -461,7 +466,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32885906" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.0" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32885906" />
       <window_info anchor="bottom" id="Run" order="3" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
@@ -537,44 +542,45 @@
     <MESSAGE value="add gif to end game" />
     <MESSAGE value="add sound" />
     <MESSAGE value="loading screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="loading screen" />
+    <MESSAGE value="tutorial" />
+    <option name="LAST_COMMIT_MESSAGE" value="tutorial" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/jsfiles/MAIN.js</url>
-          <line>193</line>
+          <line>196</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/jsfiles/MAIN.js</url>
-          <line>94</line>
+          <line>97</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/jsfiles/MAIN.js</url>
-          <line>404</line>
+          <line>410</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/jsfiles/MAIN.js</url>
-          <line>601</line>
+          <line>607</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/jsfiles/MAIN.js</url>
-          <line>651</line>
+          <line>657</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/jsfiles/MAIN.js</url>
-          <line>623</line>
+          <line>629</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
@@ -646,13 +652,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jsfiles/island.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jsfiles/shot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -674,17 +673,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SHIP.html">
+    <entry file="file://$PROJECT_DIR$/jsfiles/island.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/images/tutorialbackground.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/tradebackground.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/jsfiles/MAIN.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="218" column="32" selection-start-line="218" selection-start-column="32" selection-end-line="218" selection-end-column="32" />
+        <state relative-caret-position="3612">
+          <caret line="396" column="28" selection-start-line="396" selection-start-column="28" selection-end-line="396" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SHIP.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
