@@ -58,6 +58,9 @@ var fonts;
 var tutorial = false;
 //tutorial background
 var t;
+
+//enemy
+var allenemy = [];
 //setup
 
 
@@ -143,7 +146,7 @@ function setup() {
         let lastx = 0;
         for(let z=0;z<islandcount; z++) {
 
-            if(x<5000 && y<5000) {
+            if(x<5001 && y<5001) {
                 h++;
                 x +=100;
 
@@ -155,15 +158,18 @@ function setup() {
                let shape = Math.floor(Math.random() * 5) + 1;
 
                if (random === 1) {
-                   lasty += Math.floor(Math.random() * 10000) + 1;
+                   lasty += Math.floor(Math.random() * 5000) + 1;
 
                 }
                 else if(random === 2) {
-                    lasty -= Math.floor(Math.random() * 10000) + 1;
+                    lasty -= Math.floor(Math.random() * 5000) + 1;
 
                 }
-                I = new Island(lastx, lasty,shape);
-                allislands.push(I);
+                if(dist(lastx,lasty,Ship.x,Ship.y)>300) {
+                    I = new Island(lastx, lasty, shape);
+
+                    allislands.push(I);
+                }
             }
         }
         //imagesloading
@@ -601,6 +607,13 @@ function update() {
 
         }
         index++;
+    }
+    //################################################## GENERATE ENEMY ################################################
+    let random = Math.floor(Math.random() * 1800) + 1;
+    if(random===1){
+
+        enemy = new Enemy(Ship.x+400,Ship.y+400);
+        allenemy.push(enemy);
     }
 
 }
