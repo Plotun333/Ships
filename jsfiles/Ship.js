@@ -55,9 +55,6 @@ function ship() {
         pop();
     };
     //the wind function takes in a arg of the dir of the wind
-    this.wind = function (dir) {
-
-    };
     this.move1 = function () {
         //rotating the boat
         this.Rotate+=5;

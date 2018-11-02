@@ -1,5 +1,5 @@
 //global variables
-
+var random2 = true;
 var mapbig = false;
 
 var start = true;
@@ -296,6 +296,15 @@ function draw() {
                 allcapturedislands[capturedislandindex].show();
                 capturedislandindex++;
             }
+            //show enemy island
+            index = 0;
+            for(let i = 0; i<allenemy.length;i++){
+                allenemy[index].move();
+                allenemy[index].show();
+                index++;
+            }
+
+
             //show island shots
             let index2 = 0;
             for (let y = 0; y < islandshots.length; y++) {
@@ -538,14 +547,28 @@ function update() {
     //move the captured islands
     for(let i = 0;i<allcapturedislands.length;i++) {
 
+            //converting angles to radians then getting the cos of these newly created radians (times the speed)
+            //the same with y but except cos => sin
+            //by this process we basically get the x and y of a degree
+            allcapturedislands[index].x += Math.cos(angle * (Math.PI / 180)) * speed;
+            allcapturedislands[index].y += Math.sin(angle * (Math.PI / 180)) * speed;
+
+            index++;
+    }
+    //move the enemy
+    index = 0;
+    //move the captured islands
+    for(let i = 0;i<allenemy.length;i++) {
+
         //converting angles to radians then getting the cos of these newly created radians (times the speed)
         //the same with y but except cos => sin
         //by this process we basically get the x and y of a degree
-        allcapturedislands[index].x += Math.cos(angle * (Math.PI / 180)) * speed;
-        allcapturedislands[index].y += Math.sin(angle * (Math.PI / 180)) * speed;
+        allenemy[index].x += Math.cos(angle * (Math.PI / 180)) * speed;
+        allenemy[index].y += Math.sin(angle * (Math.PI / 180)) * speed;
 
         index++;
     }
+
     //-----------
     //move the boarders
     borderx += Math.cos(angle * (Math.PI / 180)) * speed;
@@ -609,10 +632,21 @@ function update() {
         index++;
     }
     //################################################## GENERATE ENEMY ################################################
-    let random = Math.floor(Math.random() * 1800) + 1;
-    if(random===1){
 
-        enemy = new Enemy(Ship.x+400,Ship.y+400);
+    if(random2){
+        random2 = false;
+        let random1 = Math.floor(Math.random() * 4) + 1;
+        var randomx = Math.floor(Math.random() * 500) +450;
+        var randomy = Math.floor(Math.random() * 500) +450;
+        if(random1===1){
+            randomx = -randomx;
+        }if(random1===2){
+            randomy = -randomy;
+        }if(random1===3) {
+           randomx = -randomx;
+           randomy = -randomy;
+        }
+        enemy = new Enemy(randomx+Ship.x,randomy+Ship.y);
         allenemy.push(enemy);
     }
 
