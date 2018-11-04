@@ -23,7 +23,7 @@ var moveaway = 0;
 //############################
 //adding crew members
 var crew = 30;
-var shiphealth = 100;
+var shiphealth = 500;
 
 //shooting
 //is the player shooting
@@ -42,7 +42,7 @@ var addtoshootingpause = false;
 
 //score and coins
 var score = 0;
-var coins = 0;
+var coins = 2500;
 
 //trade interface
 var tradeinterace = false;
@@ -231,15 +231,14 @@ function draw() {
         text('PRESS SPACE TO PLAY',200,600);
         fill('black');
         text('IT IS THE YEAR 1670 AND YOU CALL YOUR SELF A PIRATE. YOUR GOAL \n' +
-            'IS TO INVADE AS MANY CITIES POSSIBLE. THERE WILL BE BRITISH SHIP THAT \n' +
-            'SHALL TRY TO DESTROY YOU BUT FEAR NOT YOU ARE KNOWN AS ONE OF THE BEST \n'+
+            'IS TO INVADE AS MANY CITIES AS POSSIBLE. THERE WILL BE BRITISH SHIP THAT \n' +
+            'SHALL TRY TO DESTROY YOU BUT FEAR NOT, YOU ARE KNOWN AS ONE OF THE BEST \n'+
             'CAPTAINS TO EVER SALE THE SEA. I BET YOU WILL DO ALL RIGHT. YOUR SHIP IS \n' +
             'CALLED THE SHADOWS OF THE SEA. YOU ROTATE YOUR SHIP USING THE \n'+
-            'KEYS "D" AND "A" YOU PREPARE YOU SHIP TO FIRE WITH THE KEY "R" \n' +
-
+            'KEYS "D" AND "A" YOU PREPARE YOUR SHIP TO FIRE WITH THE KEY "R" \n' +
             'AND YOU FIRE WITH THE KEYS "Q" AND "E". YOU CAN START ROWING BY PRESSING "W".\n' +
-            'AND ANCHOR BY PRESSING "S". THE WIND SHALL BE DISPLAY ON THE TOP RIGHT CORNER \n' +
-            'OF THE SCREEN. YOU CAN BUY UPGRADES WITH COINS ONCE YOU ARRIVE AT A FRIENDLY ISLAND \n' +
+            'AND ANCHOR BY PRESSING "S". THE WIND SHALL BE DISPLAY ON THE TOP RIGHT CORNER OF \n' +
+            'THE SCREEN. YOU CAN BUY UPGRADES WITH COINS ONCE YOU ARRIVE AT A FRIENDLY ISLAND \n' +
             '\n' +
             '                                                             GOOD LUCK',width/2-145,200)
 
@@ -265,7 +264,7 @@ function draw() {
             let index = 0;
             for (let i = 0; i < allislands.length; i++) {
                 allislands[index].show();
-                h = dist(allislands[index].x + 150, allislands[index].y + 150, Ship.x + 100, Ship.y);
+                let h = dist(allislands[index].x + 150, allislands[index].y + 150, Ship.x + 100, Ship.y);
                 if (h < 150) {
                     shiphealth--;
                     let r = Math.floor(Math.random() * 3) + 1;
@@ -288,9 +287,20 @@ function draw() {
                         Getout();
                     }
                 }
+                for(let y = 0;y<allenemy.length;y++){
+                    let h2 = dist(allislands[index].x + 150, allislands[index].y + 150, allenemy[index].x + 100, allenemy[index].y);
+                    if(h2 < 150){
+                        allenemy[index].angle+=90;
+                    }
+                }
                 index++;
 
             }
+            //check for player and enemy collisions
+
+
+
+
             //show captured islands
             let capturedislandindex = 0;
             for (let x = 0; x < allcapturedislands.length; x++) {
@@ -302,6 +312,37 @@ function draw() {
             for(let i = 0; i<allenemy.length;i++){
                 allenemy[index].move();
                 allenemy[index].show();
+                h = dist(allenemy[index].x-100, allenemy[index].y-100,Ship.x+100 , Ship.y);
+                if (h < 150) {
+                    shiphealth--;
+                    allenemy[index].lives--;
+                    if(allenemy[index].lives<=0){
+                        allenemy[index] = undefined;
+                        allenemy.splice(index,1);
+                        break;
+
+                    }
+                    let r = Math.floor(Math.random() * 3) + 1;
+                    if (r === 1) {
+                        crew--;
+                    }
+                    //don not move when on land
+                    Ship.speed = 0;
+                    //gemaover screen
+                    if (shiphealth <= 0 || crew <= 0) {
+                        fill('black');
+                        rect(0, 0, width, height);
+                        fill('red');
+                        textSize(100);
+                        text('GAME OVER', width / 2, 100);
+                        let skull = createImg("https://media.giphy.com/media/l3V0yA9zHe5m29sxW/giphy.gif");
+                        skull.position(width / 2 - 200, height / 2 - 150);
+
+
+                        Getout();
+                    }
+                }
+
                 index++;
             }
 
@@ -312,7 +353,8 @@ function draw() {
                     if(allenemy[index].hit(shots[index2].x, shots[index2].y)){
                         allenemy[index].lives--;
                         if(allenemy[index].lives<=0){
-                            coins+=250;
+                            coins+=300;
+                            score+=3;
                             allenemy[index] = undefined;
                             allenemy.splice(index,1);
 
@@ -326,8 +368,38 @@ function draw() {
                 index++;
             }
 
-            //show island shots
             let index2 = 0;
+            for(let y=0;y<enemyshots.length;y++ ){
+                if(Ship.hit(enemyshots[index2].x, enemyshots[index2].y)){
+                    shiphealth--;
+                    let r = Math.floor(Math.random() * 3) + 1;
+                    if (r === 1) {
+                        crew--;
+                    }
+                    enemyshots[index2] = undefined;
+                    //remove from list
+                    enemyshots.splice(index2, 1);
+
+                    if (shiphealth <= 0 || crew <= 0) {
+                        fill('black');
+                        rect(0, 0, width, height);
+                        fill('red');
+                        textSize(100);
+                        text('GAME OVER', width / 2, 100);
+                        let skull = createImg("https://media.giphy.com/media/l3V0yA9zHe5m29sxW/giphy.gif");
+                        skull.position(width / 2 - 200, height / 2 - 150);
+
+
+                        Getout();
+                    }
+                    break;
+                }
+                index2++;
+            }
+
+
+            //show island shots
+            index2 = 0;
             for (let y = 0; y < islandshots.length; y++) {
                 if (Ship.hit(islandshots[index2].x, islandshots[index2].y)) {
                     shiphealth--;
@@ -443,7 +515,7 @@ function draw() {
             fill('lightgreen');
             text("1 CREW = 100 COINS PRESS Z",700,350);
             text("1 SHIP HEALTH = 30 COINS PRESS X",700,400);
-            text("add 1 BULLET RANGE = 150 COINS PRESS C",700,450);
+            text("add 1 BULLET RANGE = 1000 COINS PRESS C",700,450);
             text("add 1 SHIP MAX SPEED = 5000 COINS PRESS V",700,500);
             fill('red');
             text("TO EXIT PRESS N",700,600);
@@ -455,6 +527,35 @@ function draw() {
 }
 //update
 function update() {
+    //winning
+    if(score>=7500){
+        fill('black');
+        rect(0, 0, width, height);
+        fill('green');
+        textSize(100);
+        text('YOU HAVE WON', width / 2, 100);
+        let skull = createImg("https://media.giphy.com/media/WQelDfuEcn3Vu/giphy.gif");
+        skull.position(width / 2 - 200, height / 2);
+
+
+        Getout();
+    }
+
+    //checking if player is cheating
+    if(coins/(score+25)>100 || (score+25)/coins<0.01){
+        console.log("HAHAHA YOU THOUGHT YOU CAN STEAL COINS FROM ME. I AM GOD AND I AM ALWAYS WATCHING");
+        fill('black');
+        rect(0, 0, width, height);
+        fill('red');
+        textSize(100);
+        text('GAME OVER', width / 2, 100);
+        let skull = createImg("https://media.giphy.com/media/l3V0yA9zHe5m29sxW/giphy.gif");
+        skull.position(width / 2 - 200, height / 2 - 150);
+
+
+        Getout();
+    }
+
     //checking if the ship close to a island if so then the castles from the island start firing at the shi
     let Index = 0;
     for(let i = 0;i < allislands.length;i++){
@@ -664,8 +765,9 @@ function update() {
     }
     //################################################## GENERATE ENEMY ################################################
 
-    if(random2){
-        random2 = false;
+    random2 = Math.floor(Math.random() * 2000 - (score+10/10)) + 1;
+
+    if(random2 === 1){
         let random1 = Math.floor(Math.random() * 4) + 1;
         var randomx = Math.floor(Math.random() * 500) +450;
         var randomy = Math.floor(Math.random() * 500) +450;
@@ -798,7 +900,7 @@ function keyPressed() {
     if(key==='c'|| key==='C' && mapbig===true) {
         if (coins >= 150) {
             range -= 1;
-            coins -= 150;
+            coins -= 1000;
         }
     }
     if(key==='v'|| key==='V' && mapbig===true) {

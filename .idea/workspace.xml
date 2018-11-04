@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7c7c7a69-2e9e-460d-a8cc-7f523a0d3816" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/shipenemy.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/jsfiles/MAIN.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/MAIN.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsfiles/enemy.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsfiles/enemy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds/2.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds/3.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/3.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds/4.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/4.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sounds/5.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/sounds/5.mp3" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,7 +39,7 @@
           <entry key="gif" value="1" />
           <entry key="html" value="5" />
           <entry key="jpg" value="10" />
-          <entry key="js" value="27" />
+          <entry key="js" value="28" />
           <entry key="mp3" value="1" />
           <entry key="png" value="10" />
         </counts>
@@ -54,7 +48,7 @@
         <counts>
           <entry key="HTML" value="5" />
           <entry key="Image" value="21" />
-          <entry key="JavaScript" value="27" />
+          <entry key="JavaScript" value="28" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="YouTrack" value="1" />
         </counts>
@@ -62,15 +56,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="328" />
-          <entry key="js" value="33471" />
-          <entry key="txt" value="588" />
+          <entry key="js" value="34274" />
+          <entry key="txt" value="627" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="328" />
-          <entry key="JavaScript" value="33471" />
-          <entry key="PLAIN_TEXT" value="588" />
+          <entry key="JavaScript" value="34274" />
+          <entry key="PLAIN_TEXT" value="627" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -82,8 +76,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SHIP.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+            <state relative-caret-position="345">
+              <caret line="15" column="50" lean-forward="true" selection-start-line="15" selection-start-column="50" selection-end-line="16" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -100,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jsfiles/Ship.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="220" column="5" lean-forward="true" selection-start-line="213" selection-start-column="4" selection-end-line="220" selection-end-column="5" />
+            <state relative-caret-position="4968">
+              <caret line="216" column="24" lean-forward="true" selection-start-line="216" selection-start-column="24" selection-end-line="216" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -118,8 +112,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jsfiles/MAIN.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="694" column="60" selection-start-line="694" selection-start-column="60" selection-end-line="694" selection-end-column="60" />
+            <state relative-caret-position="299">
+              <caret line="292" column="50" selection-start-line="292" selection-start-column="50" selection-end-line="292" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jsfiles/mission_map.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="7" column="54" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -127,7 +130,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jsfiles/shot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
+            <state relative-caret-position="115">
               <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
             </state>
           </provider>
@@ -145,8 +148,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jsfiles/enemy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+            <state relative-caret-position="-1035">
+              <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -300,7 +303,7 @@
       <workItem from="1541082940156" duration="10230000" />
       <workItem from="1541169418338" duration="212000" />
       <workItem from="1541170778201" duration="11822000" />
-      <workItem from="1541276928830" duration="7641000" />
+      <workItem from="1541276928830" duration="14315000" />
     </task>
     <task id="LOCAL-00001" summary="adding starting island">
       <created>1540491835444</created>
@@ -512,14 +515,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541235697136</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="enemy turning + enemy shot collision">
+      <created>1541331614207</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1541331614207</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199628000" />
+    <option name="totallyTimeSpent" value="206302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.5327381" />
@@ -579,7 +589,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="paddling" />
     <MESSAGE value="edit compass + anchoring" />
     <MESSAGE value="borders" />
     <MESSAGE value="generate islands" />
@@ -604,7 +613,8 @@
     <MESSAGE value="starting the enemy algorithm" />
     <MESSAGE value="ship collisions" />
     <MESSAGE value="ship movement" />
-    <option name="LAST_COMMIT_MESSAGE" value="ship movement" />
+    <MESSAGE value="enemy turning + enemy shot collision" />
+    <option name="LAST_COMMIT_MESSAGE" value="enemy turning + enemy shot collision" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -621,17 +631,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/jsfiles/MAIN.js</url>
-          <line>456</line>
+          <line>528</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/jsfiles/MAIN.js</url>
-          <line>724</line>
+          <line>826</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/jsfiles/MAIN.js</url>
-          <line>774</line>
+          <line>876</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
@@ -683,17 +693,16 @@
     <entry file="file://$PROJECT_DIR$/Fonts/RAPSCALL.TTF">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/jsfiles/mission_map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="54" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/tutorialbackground.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/images/tradebackground.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sounds/1.mp3">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/shipenemy.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/jsfiles/collision.js">
@@ -703,13 +712,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sounds/1.mp3">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/jsfiles/Ship.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="220" column="5" lean-forward="true" selection-start-line="213" selection-start-column="4" selection-end-line="220" selection-end-column="5" />
+        <state relative-caret-position="4968">
+          <caret line="216" column="24" lean-forward="true" selection-start-line="216" selection-start-column="24" selection-end-line="216" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -720,6 +726,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/jsfiles/enemy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1035">
+          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/jsfiles/wind.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -727,34 +740,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/images/shipenemy.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/jsfiles/shot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
+        <state relative-caret-position="115">
           <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jsfiles/enemy.js">
+    <entry file="file://$PROJECT_DIR$/jsfiles/mission_map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        <state relative-caret-position="161">
+          <caret line="7" column="54" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jsfiles/MAIN.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="694" column="60" selection-start-line="694" selection-start-column="60" selection-end-line="694" selection-end-column="60" />
+        <state relative-caret-position="299">
+          <caret line="292" column="50" selection-start-line="292" selection-start-column="50" selection-end-line="292" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SHIP.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        <state relative-caret-position="345">
+          <caret line="15" column="50" lean-forward="true" selection-start-line="15" selection-start-column="50" selection-end-line="16" selection-end-column="48" />
         </state>
       </provider>
     </entry>
