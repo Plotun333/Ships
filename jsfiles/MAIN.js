@@ -29,6 +29,8 @@ var shiphealth = 100;
 //is the player shooting
 var shootingE = false;
 var shootingQ = false;
+var Enemyshooting = false;
+var enemyshootingpause = 0;
 var shots = [];
 var shooting = false;
 //when shooting the ship slows down
@@ -61,6 +63,7 @@ var t;
 
 //enemy
 var allenemy = [];
+var enemyshots = [];
 //setup
 
 
@@ -80,17 +83,15 @@ function Playsong() {
 }
 function Playsong1(song1) {
     sounds.push(song1);
-}function Playsong2(song2) {
-    sounds.push(song2);
+}
+function Playsong2(song5) {
+    sounds.push(song5);
 }
 function Playsong3(song3) {
     sounds.push(song3);
 }
 function Playsong4(song4) {
     sounds.push(song4);
-
-}function Playsong5(song5) {
-    sounds.push(song5);
     loaded = false;
 
 }
@@ -176,10 +177,10 @@ function setup() {
 
         //load songs
         let song1 = loadSound('sounds/1.mp3',Playsong1);
-        let song2 = loadSound('sounds/2.mp3',Playsong2);
+        let song2 = loadSound('sounds/5.mp3',Playsong2);
         let song3 = loadSound('sounds/3.mp3',Playsong3);
         let song4 = loadSound('sounds/4.mp3',Playsong4);
-        let song5 = loadSound('sounds/5.mp3',Playsong5);
+
         //it is no longer the start of the game
         start=false;
 
@@ -221,7 +222,7 @@ function draw() {
         fill('grey');
         textSize(100);
 
-        text("TUTORIAL",700,150);
+        text("INTRO",700,150);
 
         fill('black');
         textSize(25);
@@ -238,7 +239,7 @@ function draw() {
 
             'AND YOU FIRE WITH THE KEYS "Q" AND "E". YOU CAN START ROWING BY PRESSING "W".\n' +
             'AND ANCHOR BY PRESSING "S". THE WIND SHALL BE DISPLAY ON THE TOP RIGHT CORNER \n' +
-            'OF THE SCREEN. YOU CAN BUY UPGRADES WITH COINS ONCE YOU ARRIVE AT FRIENDLY ISLAND \n' +
+            'OF THE SCREEN. YOU CAN BUY UPGRADES WITH COINS ONCE YOU ARRIVE AT A FRIENDLY ISLAND \n' +
             '\n' +
             '                                                             GOOD LUCK',width/2-145,200)
 
@@ -304,6 +305,26 @@ function draw() {
                 index++;
             }
 
+            index = 0;
+            for(let x=0;x<allenemy.length;x++){
+                let index2 = 0;
+                for(let y=0;y<shots.length;y++ ){
+                    if(allenemy[index].hit(shots[index2].x, shots[index2].y)){
+                        allenemy[index].lives--;
+                        if(allenemy[index].lives<=0){
+                            coins+=250;
+                            allenemy[index] = undefined;
+                            allenemy.splice(index,1);
+
+                        }
+
+                        break;
+
+                    }
+                    index2++;
+                }
+                index++;
+            }
 
             //show island shots
             let index2 = 0;
@@ -332,6 +353,7 @@ function draw() {
                     }
                     break;
                 }
+
                 //if the shot hits range
                 if (islandshots[index2].destroy) {
                     islandshots[index2] = undefined;
@@ -353,6 +375,15 @@ function draw() {
                     index++
                 }
             }
+            //enemy shots
+            if(enemyshots.length > 0){
+                let index = 0;
+                for(let i = 0; i < enemyshots.length; i++){
+                    enemyshots[index].show();
+                    index++
+                }
+            }
+
             //show speed text
             //if the ship is ready to shoot it slows down
             textSize(20);
@@ -648,6 +679,45 @@ function update() {
         }
         enemy = new Enemy(randomx+Ship.x,randomy+Ship.y);
         allenemy.push(enemy);
+    }
+    //### ENEMY SHOTS
+    index = 0;
+    for(let i = 0;i<allenemy.length;i++) {
+        if(allenemy[index].shooting) {
+            enemyshootingpause++;
+            if(enemyshootingpause>=80) {
+                enemyshootingpause = 0;
+
+                for (let x = 0; x < 5; x++) {
+                    //resolving a rotation problem
+
+                    if (allenemy[index].Rotate >= 45 && allenemy[index].Rotate <= 135 || allenemy[index].Rotate <= -45 && allenemy[index].Rotate >= -135 || allenemy[index].Rotate >= 225 && allenemy[index].Rotate <= 315 || allenemy[index].Rotate <= -225 && allenemy[index].Rotate >= -315) {
+                        SHOT = new Shot(allenemy[index].x-120 + x * 10, allenemy[index].y, allenemy[index].Rotate, range);
+                        enemyshots.push(SHOT);
+                        Enemyshooting = true;
+                    } else {
+                        SHOT = new Shot(allenemy[index].x-120, allenemy[index].y + x * 10, allenemy[index].Rotate, range);
+                        enemyshots.push(SHOT);
+                        Enemyshooting = true;
+                    }
+                }
+            }
+        }
+        index++;
+    }
+    //move enemy shots
+    index = 0;
+    for (let i = 0; i < enemyshots.length; i++) {
+        if (enemyshots[index].destroy) {
+            enemyshots[index] = undefined;
+            Enemyshooting = false;
+            enemyshots.splice(index, 1);
+            break;
+        }
+        if (Enemyshooting) {
+            enemyshots[index].moveE();
+        }
+        index++;
     }
 
 }
